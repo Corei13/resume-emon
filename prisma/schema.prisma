@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Experience {
+  id          Int    @id @default(autoincrement())
+  position    String
+  company     String
+  description Json
+  from        Json
+  to          Json
+  location    String
+  Resume      Resume @relation(fields: [username], references: [username], onDelete: Cascade)
+  username    String
+}
+
+model Education {
+  id       Int    @id @default(autoincrement())
+  school   String
+  degree   String
+  from     Json
+  to       Json
+  Resume   Resume @relation(fields: [username], references: [username], onDelete: Cascade)
+  username String
+}
+
+model SkillSection {
+  id       Int    @id @default(autoincrement())
+  title    String
+  skills   Json
+  Resume   Resume @relation(fields: [username], references: [username], onDelete: Cascade)
+  username String
+}
+
+model Project {
+  id           Int    @id @default(autoincrement())
+  title        String
+  description  String
+  url          String
+  technologies Json
+  screenshots  Json
+  Resume       Resume @relation(fields: [username], references: [username], onDelete: Cascade)
+  username     String
+}
+
+model Resume {
+  username    String         @id @unique
+  profile     Json
+  experiences Experience[]
+  educations  Education[]
+  skills      SkillSection[]
+  projects    Project[]
+}
