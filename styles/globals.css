@@ -18,9 +18,6 @@ a {
 
 .ch-code {
   background-color: #f8f8f8 !important;
-  color: black !important;
-  box-shadow: none !important;
-  font-family: roboto !important;
 }
 
 .ch-codeblock.not-prose {
