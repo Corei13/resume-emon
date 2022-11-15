@@ -47,7 +47,11 @@ export type IconName =
   | "monitor_black"
   | "projects"
   | "projects_black"
-  | "up";
+  | "up"
+  | "myResume"
+  | "resume"
+  | "challenges"
+  | "backIcon";
 
 type IconProps = {
   name: IconName;

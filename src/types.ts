@@ -88,6 +88,12 @@ export type Resume = {
   skills: SkillSection[];
 };
 
+export type TNavButton = {
+  icon: React.ReactNode;
+  label: string;
+  isSelected: Boolean;
+};
+
 export type SectionTypes =
   | "profile"
   | "experience"
