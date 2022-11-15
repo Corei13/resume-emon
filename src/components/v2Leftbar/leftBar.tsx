@@ -12,6 +12,7 @@ export const LeftBarV2 = () => {
         width: "178px",
         height: "100vh",
         boxShadow: "0px 16px 29px 0px #00000014",
+        zIndex: 999999,
       }}
       sticky={true}
     >
