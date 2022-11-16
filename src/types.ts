@@ -88,6 +88,11 @@ export type Resume = {
   skills: SkillSection[];
 };
 
+export type CodeBlocks = {
+  username: string;
+  code: string;
+};
+
 export type TNavButton = {
   icon: React.ReactNode;
   label: string;

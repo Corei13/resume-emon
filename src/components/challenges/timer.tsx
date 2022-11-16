@@ -6,12 +6,10 @@ const renderer = ({
   hours,
   minutes,
   seconds,
-  completed,
 }: {
   hours: string;
   minutes: string;
   seconds: string;
-  completed: boolean;
 }) => {
   return (
     <XStack>

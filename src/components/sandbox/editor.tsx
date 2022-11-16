@@ -1,18 +1,27 @@
 import { XStack } from "@src/components/stack";
+
 import {
   SandpackProvider,
-  SandpackCodeEditor,
   SandpackPreview,
+  SandpackFileExplorer,
 } from "@codesandbox/sandpack-react";
 import { nightOwl } from "@codesandbox/sandpack-themes";
 import { useEffect, useState } from "react";
 import { Preview } from "@src/components/sandbox/preview";
+import { SandpackEditor } from "@src/components/sandbox/sandpackCodeEditor";
 
 export const Editor = () => {
   const [height, setHeight] = useState(0);
 
+  const initialFile = `export default function App() {
+    return <h1>Hello Re:cruit!</h1>;
+  }
+  `;
+
   useEffect(() => {
-    setHeight(window.innerHeight);
+    if (typeof window !== "undefined") {
+      setHeight(window.innerHeight);
+    }
 
     return () => {
       setHeight(0);
@@ -26,14 +35,10 @@ export const Editor = () => {
       }}
     >
       <SandpackProvider
-        template="react-ts"
+        template="react"
         theme={nightOwl}
         style={{ width: "100%" }}
-        options={{
-          autorun: true,
-          recompileMode: "immediate",
-          initMode: "immediate",
-        }}
+        files={{ "/App.js": initialFile }}
       >
         <XStack css={{ width: "100%" }}>
           <XStack
@@ -43,14 +48,10 @@ export const Editor = () => {
               height: `${height - 96}px`,
             }}
           >
-            <SandpackCodeEditor
-              showLineNumbers={true}
-              showInlineErrors={true}
-              wrapContent={true}
-              showTabs={true}
-              closableTabs={true}
-              initMode="immediate"
-            />
+            <XStack css={{ width: "$64" }}>
+              <SandpackFileExplorer />
+            </XStack>
+            <SandpackEditor />
           </XStack>
           <Preview windowHeight={height - 96}>
             <SandpackPreview style={{ height: `${height - 142}px` }} />
