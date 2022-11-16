@@ -223,7 +223,11 @@ const MDXh1 = (props: PropsWithChildren<Props>) => {
     <Typography
       variant="lg"
       color="$gray800"
-      css={{ fontWeight: "bold", marginTop: "$space$32" }}
+      css={{
+        fontWeight: "bold",
+        paddingTop: "$space$24",
+        paddingBottom: "$space$8",
+      }}
       {...props}
     />
   );

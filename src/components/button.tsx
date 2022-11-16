@@ -5,6 +5,7 @@ export const Button = styled("button", {
   height: "$space$40",
   margin: "auto",
   alignItems: "center",
+  cursor: "pointer",
   variants: {
     type: {
       violet: {
@@ -16,6 +17,22 @@ export const Button = styled("button", {
         backgroundColor: "$white",
         color: "$gray500",
         border: "1px solid $gray300",
+      },
+    },
+  },
+});
+
+export const MiniButton = styled("button", {
+  height: "$space$48",
+  paddingX: "$space$10",
+  color: "$gray500",
+  border: "0",
+  backgroundColor: "$gray150",
+  cursor: "pointer",
+  variants: {
+    active: {
+      true: {
+        color: "$gray900",
       },
     },
   },

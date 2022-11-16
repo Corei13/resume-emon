@@ -29,6 +29,7 @@ export const {
       gray400: "#B1B8C3",
       gray300: "#D6D9DE",
       gray200: "#EEEFF0",
+      gray150: "#F8F8F8",
       gray100: "#F9FAFB",
       pdfBg: "#525659",
       violet: "#526DFC",
@@ -45,6 +46,7 @@ export const {
       16: "1rem",
       18: "1.125rem",
       20: "1.25rem",
+      22: "1.375rem",
       24: "1.5rem",
       26: "1.625rem",
       30: "1.875",
@@ -67,6 +69,7 @@ export const {
       256: "16rem",
       448: "28rem",
       580: "36.25rem",
+      650: "40.625rem",
     },
     fontSizes: {
       xxs: "0.625rem" /* 10px */,
