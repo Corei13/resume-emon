@@ -1,11 +1,14 @@
+import { ChallengesNav } from "@src/components/challenges/nav";
+import { Timer } from "@src/components/challenges/timer";
 import { Editor } from "@src/components/sandbox/editor";
-import { XStack } from "@src/components/stack";
+import { YStack } from "@src/components/stack";
 
 const SandBox = () => {
   return (
-    <XStack>
+    <YStack>
+      <ChallengesNav timer={<Timer />} isSandboxPage={true} />
       <Editor />
-    </XStack>
+    </YStack>
   );
 };
 

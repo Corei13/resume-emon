@@ -28,20 +28,19 @@ export const Editor = () => {
       <SandpackProvider
         template="react-ts"
         theme={nightOwl}
-        style={{ width: "100%", backgroundColor: "$white" }}
+        style={{ width: "100%" }}
         options={{
           autorun: true,
           recompileMode: "immediate",
           initMode: "immediate",
         }}
       >
-        <XStack css={{ width: "100%", backgroundColor: "$white" }}>
+        <XStack css={{ width: "100%" }}>
           <XStack
             css={{
               flex: 1,
               flexShrink: 1,
-              height: `${height}px`,
-              backgroundColor: "$white",
+              height: `${height - 96}px`,
             }}
           >
             <SandpackCodeEditor
@@ -53,10 +52,8 @@ export const Editor = () => {
               initMode="immediate"
             />
           </XStack>
-          <Preview windowHeight={height}>
-            <SandpackPreview
-              style={{ height: `${height - 46}px`, backgroundColor: "$white" }}
-            />
+          <Preview windowHeight={height - 96}>
+            <SandpackPreview style={{ height: `${height - 142}px` }} />
           </Preview>
         </XStack>
       </SandpackProvider>

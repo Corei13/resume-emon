@@ -5,12 +5,19 @@ import { ModalBody } from "@src/components/modal/modalBody";
 import { TaskModalContent } from "@src/components/modal/taskModalContent";
 import Image from "next/image";
 import { Button } from "@src/components/button";
+import React from "react";
 
-export const ChallengesNav = () => {
+export const ChallengesNav = ({
+  timer,
+  isSandboxPage,
+}: {
+  timer?: React.ReactNode;
+  isSandboxPage?: boolean;
+}) => {
   return (
     <XStack
       css={{
-        marginX: "$40",
+        paddingX: "$40",
         width: "100%",
         height: "$space$96",
         alignItems: "center",
@@ -19,9 +26,12 @@ export const ChallengesNav = () => {
       }}
       sticky={true}
     >
-      <Typography variant="h4" color="$gray900">
-        Code Cube
-      </Typography>
+      <XStack css={{ marginRight: "auto" }}>
+        <Typography variant="h4" color="$gray900">
+          Code Cube
+        </Typography>
+      </XStack>
+      <XStack css={{ margin: "auto", paddingLeft: "$40" }}>{timer}</XStack>
       <XStack
         alignItems="center"
         css={{
@@ -29,11 +39,17 @@ export const ChallengesNav = () => {
           gap: "$10",
         }}
       >
-        <ModalBody body={<TaskModalContent />}>
-          <Button type={"violet"} css={{ width: "$space$128" }}>
-            Start Test
+        {isSandboxPage ? (
+          <Button type={"violet"} css={{ width: "$space$134" }}>
+            Submit Test
           </Button>
-        </ModalBody>
+        ) : (
+          <ModalBody body={<TaskModalContent />}>
+            <Button type={"violet"} css={{ width: "$space$128" }}>
+              Start Test
+            </Button>
+          </ModalBody>
+        )}
         <Bell />
         <XStack
           css={{
