@@ -1,6 +1,6 @@
+import { Button } from "@src/components/button";
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
-import { PrimaryButton, SecondaryButton } from "@src/components/button";
 import Image from "next/image";
 
 export const TaskModalContent = () => {
@@ -52,12 +52,18 @@ export const TaskModalContent = () => {
         ></Image>
       </XStack>
       <XStack css={{ gap: "$14" }}>
-        <SecondaryButton css={{ width: "$space$252", height: "$space$48" }}>
+        <Button
+          type={"white"}
+          css={{ width: "$space$252", height: "$space$48" }}
+        >
           Go back
-        </SecondaryButton>
-        <PrimaryButton css={{ width: "$space$252", height: "$space$48" }}>
+        </Button>
+        <Button
+          type={"violet"}
+          css={{ width: "$space$252", height: "$space$48" }}
+        >
           Start Test
-        </PrimaryButton>
+        </Button>
       </XStack>
     </YStack>
   );

@@ -1,11 +1,11 @@
-import { SecondaryButton } from "@src/components/button";
+import { Button } from "@src/components/button";
 import { ChallengesNav } from "@src/components/challenges/nav";
 import { ModalBody } from "@src/components/modal/modalBody";
 import { TaskModalContent } from "@src/components/modal/taskModalContent";
 import { XStack, YStack } from "@src/components/stack";
 import { MDXh1, MDXText, Typography } from "@src/components/typography";
 import React, { useEffect, useState } from "react";
-import CodeCube from "./../../mdx/codeCube.mdx";
+import CodeCube from "@src/mdx/codeCube.mdx";
 
 export const ChallengeBody = () => {
   const components = {
@@ -18,10 +18,14 @@ export const ChallengeBody = () => {
     window.addEventListener("scroll", () => {
       setScroll(window.scrollY > 10);
     });
+
+    return () => {
+      window.removeEventListener("scroll", () => setScroll(false));
+    };
   }, []);
 
   return (
-    <YStack css={{ width: "100%", marginBottom: "$60" }}>
+    <YStack css={{ width: "100%", paddingBottom: "$60" }}>
       <XStack
         css={{
           width: "100%",
@@ -29,15 +33,14 @@ export const ChallengeBody = () => {
           alignItems: "center",
           backgroundColor: "$white",
           boxShadow: `${scroll ? "29px 16px 29px 0px #00000014" : ""}`,
-          marginBottom: "$40",
         }}
         sticky={true}
       >
         <ChallengesNav />
       </XStack>
-      <YStack css={{ marginX: "$40" }}>
+      <YStack css={{ paddingX: "$40", paddingTop: "$40" }}>
         <CodeCube components={components} />
-        <XStack css={{ marginTop: "$52" }}>
+        <XStack css={{ paddingTop: "$52" }}>
           <Typography
             variant="lg"
             color="$violet"
@@ -46,9 +49,10 @@ export const ChallengeBody = () => {
             Ready to make it happen ?
           </Typography>
         </XStack>
-        <XStack css={{ width: "100%", marginTop: "$16" }}>
+        <XStack css={{ width: "100%", paddingTop: "$16" }}>
           <ModalBody body={<TaskModalContent />}>
-            <SecondaryButton
+            <Button
+              type={"white"}
               css={{
                 width: "100%",
                 border: "1px solid $violet",
@@ -56,7 +60,7 @@ export const ChallengeBody = () => {
               }}
             >
               Start Test
-            </SecondaryButton>
+            </Button>
           </ModalBody>
         </XStack>
       </YStack>

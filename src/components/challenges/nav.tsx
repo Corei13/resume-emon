@@ -1,10 +1,10 @@
 import { Bell } from "@src/components/icons/bell";
 import { XStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
-import { PrimaryButton } from "@src/components/button";
 import { ModalBody } from "@src/components/modal/modalBody";
 import { TaskModalContent } from "@src/components/modal/taskModalContent";
 import Image from "next/image";
+import { Button } from "@src/components/button";
 
 export const ChallengesNav = () => {
   return (
@@ -23,16 +23,16 @@ export const ChallengesNav = () => {
         Code Cube
       </Typography>
       <XStack
+        alignItems="center"
         css={{
           marginLeft: "auto",
-          alignItems: "center",
           gap: "$10",
         }}
       >
         <ModalBody body={<TaskModalContent />}>
-          <PrimaryButton css={{ width: "$space$128" }}>
+          <Button type={"violet"} css={{ width: "$space$128" }}>
             Start Test
-          </PrimaryButton>
+          </Button>
         </ModalBody>
         <Bell />
         <XStack
@@ -44,8 +44,8 @@ export const ChallengesNav = () => {
           }}
         >
           <Image
-            src="/assets/icons/tempDP.png"
-            alt="a cube"
+            src="/assets/icons/staticProfilePicture.png"
+            alt="profile picture"
             height="32px"
             width="32px"
           ></Image>

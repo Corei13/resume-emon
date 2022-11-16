@@ -1,9 +1,9 @@
+import { NavButton } from "@src/components/challenges/leftbarButton";
 import { BackArrow } from "@src/components/icons/backArrow";
 import { Challenges } from "@src/components/icons/challenges";
 import { MyResume } from "@src/components/icons/myResume";
 import { Resume } from "@src/components/icons/resume";
 import { XStack, YStack } from "@src/components/stack";
-import { NavButton } from "@src/components/v2Leftbar/leftbarButton";
 
 export const LeftBarV2 = () => {
   return (

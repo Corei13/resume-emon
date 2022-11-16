@@ -1,21 +1,22 @@
 import { styled } from "@stitches/react";
 
-export const PrimaryButton = styled("button", {
-  backgroundColor: "$violet",
-  border: "0",
+export const Button = styled("button", {
   borderRadius: "6px",
   height: "$space$40",
   margin: "auto",
   alignItems: "center",
-  color: "$white",
-});
-
-export const SecondaryButton = styled("button", {
-  backgroundColor: "$white",
-  border: "1px solid $gray300",
-  borderRadius: "6px",
-  height: "$space$40",
-  margin: "auto",
-  alignItems: "center",
-  color: "$gray500",
+  variants: {
+    type: {
+      violet: {
+        backgroundColor: "$violet",
+        color: "$white",
+        border: "0",
+      },
+      white: {
+        backgroundColor: "$white",
+        color: "$gray500",
+        border: "1px solid $gray300",
+      },
+    },
+  },
 });
