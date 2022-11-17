@@ -3,16 +3,17 @@ import { ChallengesNav } from "@src/components/challenges/nav";
 import { ModalBody } from "@src/components/modal/modalBody";
 import { TaskModalContent } from "@src/components/modal/taskModalContent";
 import { XStack, YStack } from "@src/components/stack";
-import { MDXh1, MDXText, Typography } from "@src/components/typography";
+import { Typography } from "@src/components/typography";
 import React, { useEffect, useState } from "react";
 import CodeCube from "@src/mdx/codeCube.mdx";
+import { MDXh1, MDXText } from "@src/components/mdxElements";
+
+export const components = {
+  p: MDXText,
+  h1: MDXh1,
+};
 
 export const ChallengeBody = () => {
-  const components = {
-    p: MDXText,
-    h1: MDXh1,
-  };
-
   const [scroll, setScroll] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {

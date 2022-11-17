@@ -6,12 +6,7 @@ import { Editor } from "@src/components/sandbox/editor";
 import { YStack } from "@src/components/stack";
 import databaseController from "@src/controllers/databaseController";
 
-const SandBox = ({
-  codeBlocks,
-}: {
-  username: string;
-  codeBlocks: CodeBlocks;
-}) => {
+const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks }) => {
   const submitButton = (
     <Button type={"violet"} css={{ width: "$space$134" }}>
       Submit Test

@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 import { BackButton } from "@src/components/icons/backButton";
 import { useRouter } from "next/router";
+import { MonthShortNames } from "@src/utils/constants";
 
 export const ChallengesNav = ({
   navTitle,
@@ -23,24 +24,9 @@ export const ChallengesNav = ({
   actionButton?: React.ReactNode;
   searchInput?: React.ReactNode;
 }) => {
-  const month: string[] = [
-    "",
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
   const date = new Date(Date.now());
   const dateString = `${
-    month[Number(date.getMonth())]
+    MonthShortNames[Number(date.getMonth())]
   } ${date.getDate()}, ${date.getFullYear()}`;
 
   const router = useRouter();
@@ -81,8 +67,8 @@ export const ChallengesNav = ({
           {showDate && (
             <Typography
               variant="xs"
+              color="$gray500"
               css={{
-                color: "$gray500",
                 marginRight: "auto",
               }}
             >

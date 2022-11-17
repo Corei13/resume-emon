@@ -1,46 +1,10 @@
-import { MiniButton } from "@src/components/button";
 import { XStack, YStack } from "@src/components/stack";
 import React, { useState } from "react";
-import { MDXh1, MDXText } from "@src/components/typography";
 import CodeCube from "@src/mdx/codeCube.mdx";
+import { components } from "@src/components/challenges/challengeBody";
+import { PreviewNav } from "@src/components/sandbox/previewNav";
 
-type TAB = "browser" | "challenge";
-
-const components = {
-  p: MDXText,
-  h1: MDXh1,
-};
-
-const PreviewNav = ({
-  tab,
-  setTab,
-}: {
-  tab: TAB;
-  setTab: (tab: TAB) => void;
-}) => {
-  return (
-    <XStack
-      alignItems="center"
-      css={{
-        width: "100%",
-        height: "$space$46",
-        backgroundColor: "$gray150",
-        color: "$gray900",
-        paddingLeft: "$22",
-      }}
-    >
-      <MiniButton active={tab === "browser"} onClick={() => setTab("browser")}>
-        Browser
-      </MiniButton>
-      <MiniButton
-        active={tab === "challenge"}
-        onClick={() => setTab("challenge")}
-      >
-        Challenge
-      </MiniButton>
-    </XStack>
-  );
-};
+export type TAB = "browser" | "challenge";
 
 export const Preview = ({
   children,
