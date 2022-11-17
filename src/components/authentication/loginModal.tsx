@@ -20,7 +20,7 @@ export const LoginModal = () => {
         height: "$space$532",
         width: "$space$580",
         margin: "auto",
-        boxShadow: "0px 16px 29px 0px #00000014",
+        boxShadow: "0px 16px 29px #00000014",
         borderRadius: "$space$12",
         alignItems: "center",
         justifyContent: "center",

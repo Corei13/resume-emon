@@ -1,6 +1,7 @@
 import { Button } from "@src/components/button";
 import { ChallengesNav } from "@src/components/challenges/nav";
 import { Search } from "@src/components/icons/search";
+import { ResumeCard } from "@src/components/myResumes/resumeCard";
 import { XStack, YStack } from "@src/components/stack";
 import { styled } from "@src/stitches.config";
 
@@ -51,7 +52,9 @@ export const ResumeBody = () => {
         searchInput={searchInput}
         noBorder={true}
       />
-      test
+      <ResumeCard resumeTitle="Product Design" date="20 Nov, 2022" />
+      <ResumeCard resumeTitle="Re:criut" date="20 Nov, 2022" />
+      <ResumeCard resumeTitle="Affine" date="20 Nov, 2022" />
     </YStack>
   );
 };
