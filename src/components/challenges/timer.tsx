@@ -1,5 +1,6 @@
 import { Clock } from "@src/components/icons/clock";
 import { XStack } from "@src/components/stack";
+import { Typography } from "@src/components/typography";
 import Countdown from "react-countdown";
 
 const renderer = ({
@@ -13,7 +14,8 @@ const renderer = ({
 }) => {
   return (
     <XStack>
-      {hours}:{minutes}:<XStack css={{ color: "$violet" }}>{seconds}</XStack>
+      {hours}:{minutes}:
+      <Typography css={{ color: "$violet" }}>{seconds}</Typography>
     </XStack>
   );
 };
