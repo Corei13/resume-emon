@@ -2,6 +2,7 @@ import { Button } from "@src/components/button";
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 import Image from "next/image";
+import Link from "next/link";
 
 export const TaskModalContent = () => {
   return (
@@ -58,12 +59,14 @@ export const TaskModalContent = () => {
         >
           Go back
         </Button>
-        <Button
-          type={"violet"}
-          css={{ width: "$space$252", height: "$space$48" }}
-        >
-          Start Test
-        </Button>
+        <Link href={"/challenge/sandbox"}>
+          <Button
+            type={"violet"}
+            css={{ width: "$space$252", height: "$space$48" }}
+          >
+            Start Test
+          </Button>
+        </Link>
       </XStack>
     </YStack>
   );

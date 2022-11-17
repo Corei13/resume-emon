@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Resume } from "@src/types";
+import { CodeBlocks, Resume } from "@src/types";
 
 class DatabaseController {
   private client: PrismaClient | null;
@@ -66,6 +66,35 @@ class DatabaseController {
     }
 
     return resume as unknown as Resume;
+  };
+
+  public saveCodeBlocks = async (username: string, codeblocks: CodeBlocks) => {
+    await this.client?.codeBlocks.upsert({
+      where: {
+        username,
+      },
+      create: {
+        username,
+        code: codeblocks.code,
+      },
+      update: {
+        code: codeblocks.code,
+      },
+    });
+  };
+
+  public getCodeBlocks = async (
+    username: string
+  ): Promise<CodeBlocks | null> => {
+    const codeBlocks = await this.client?.codeBlocks.findUnique({
+      where: { username },
+    });
+
+    if (!codeBlocks) {
+      return null;
+    }
+
+    return codeBlocks as unknown as CodeBlocks;
   };
 }
 

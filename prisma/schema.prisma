@@ -61,3 +61,8 @@ model Resume {
   skills      SkillSection[]
   projects    Project[]
 }
+
+model CodeBlocks {
+  username String @id @unique
+  code     String
+}
