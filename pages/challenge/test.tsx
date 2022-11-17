@@ -1,11 +1,11 @@
-import { ChallengeBody } from "@src/components/challenges/body";
+import { ChallengeBody } from "@src/components/challenges/challengeBody";
 import { XStack } from "@src/components/stack";
-import { LeftBarV2 } from "@src/components/challenges/leftBar";
+import { HomeLeftBar } from "@src/components/challenges/leftBar";
 
 export const Test = () => {
   return (
     <XStack>
-      <LeftBarV2 />
+      <HomeLeftBar />
       <ChallengeBody />
     </XStack>
   );

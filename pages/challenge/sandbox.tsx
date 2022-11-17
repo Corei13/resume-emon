@@ -21,6 +21,7 @@ const SandBox = ({
   return (
     <YStack>
       <ChallengesNav
+        navTitle="Code Cube"
         showCountdown={<Timer />}
         actionButton={submitButton}
         showBackButton={true}

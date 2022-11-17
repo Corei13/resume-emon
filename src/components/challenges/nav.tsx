@@ -7,15 +7,21 @@ import { BackButton } from "@src/components/icons/backButton";
 import { useRouter } from "next/router";
 
 export const ChallengesNav = ({
-  showCountdown,
+  navTitle,
   showBackButton,
+  noBorder,
   showDate,
+  showCountdown,
   actionButton,
+  searchInput,
 }: {
-  showCountdown?: React.ReactNode;
+  navTitle: string;
   showBackButton?: boolean;
+  noBorder?: boolean;
   showDate?: boolean;
+  showCountdown?: React.ReactNode;
   actionButton?: React.ReactNode;
+  searchInput?: React.ReactNode;
 }) => {
   const month: string[] = [
     "",
@@ -47,7 +53,7 @@ export const ChallengesNav = ({
         width: "100%",
         height: "$space$96",
         alignItems: "center",
-        borderBottom: "1px solid #EEEFF0",
+        borderBottom: `${noBorder ? "0" : "1px solid #EEEFF0"}`,
         backgroundColor: "$white",
       }}
       sticky={true}
@@ -57,7 +63,6 @@ export const ChallengesNav = ({
           css={{
             width: "$space$40",
             height: "100%",
-            alignItems: "center",
             cursor: "pointer",
           }}
         >
@@ -66,16 +71,33 @@ export const ChallengesNav = ({
           </XStack>
         </XStack>
       )}
-      <YStack css={{ marginRight: "auto" }}>
-        {showDate && (
-          <Typography variant="xs" css={{ color: "$gray500" }}>
-            {dateString}
+      <XStack css={{ textAlign: "center", gap: "$16" }}>
+        <YStack
+          css={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {showDate && (
+            <Typography
+              variant="xs"
+              css={{
+                color: "$gray500",
+                marginRight: "auto",
+              }}
+            >
+              {dateString}
+            </Typography>
+          )}
+          <Typography variant="h4" color="$gray900">
+            {navTitle}
           </Typography>
+        </YStack>
+        {searchInput && (
+          <XStack css={{ marginRight: "auto" }}>{searchInput}</XStack>
         )}
-        <Typography variant="h4" color="$gray900">
-          Code Cube
-        </Typography>
-      </YStack>
+      </XStack>
+
       {showCountdown && (
         <XStack css={{ margin: "auto", paddingLeft: "$40" }}>
           {showCountdown}

@@ -44,7 +44,7 @@ export const ChallengeBody = () => {
         }}
         sticky={true}
       >
-        <ChallengesNav actionButton={startTestButton} />
+        <ChallengesNav navTitle="Code Cube" actionButton={startTestButton} />
       </XStack>
       <YStack css={{ paddingX: "$40", paddingTop: "$40" }}>
         <CodeCube components={components} />

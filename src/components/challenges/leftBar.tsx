@@ -5,7 +5,7 @@ import { MyResume } from "@src/components/icons/myResume";
 import { Resume } from "@src/components/icons/resume";
 import { XStack, YStack } from "@src/components/stack";
 
-export const LeftBarV2 = () => {
+export const HomeLeftBar = () => {
   return (
     <YStack
       css={{
