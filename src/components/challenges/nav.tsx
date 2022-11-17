@@ -1,23 +1,49 @@
 import { Bell } from "@src/components/icons/bell";
-import { XStack } from "@src/components/stack";
+import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
-import { ModalBody } from "@src/components/modal/modalBody";
-import { TaskModalContent } from "@src/components/modal/taskModalContent";
 import Image from "next/image";
-import { Button } from "@src/components/button";
 import React from "react";
+import { BackButton } from "@src/components/icons/backButton";
+import { useRouter } from "next/router";
 
 export const ChallengesNav = ({
-  timer,
-  isSandboxPage,
+  showCountdown,
+  showBackButton,
+  showDate,
+  actionButton,
 }: {
-  timer?: React.ReactNode;
-  isSandboxPage?: boolean;
+  showCountdown?: React.ReactNode;
+  showBackButton?: boolean;
+  showDate?: boolean;
+  actionButton?: React.ReactNode;
 }) => {
+  const month: string[] = [
+    "",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const date = new Date(Date.now());
+  const dateString = `${
+    month[Number(date.getMonth())]
+  } ${date.getDate()}, ${date.getFullYear()}`;
+
+  const router = useRouter();
+
   return (
     <XStack
       css={{
-        paddingX: "$40",
+        paddingLeft: `${showBackButton ? "0" : "$space$40"}`,
+        paddingRight: "$40",
         width: "100%",
         height: "$space$96",
         alignItems: "center",
@@ -26,12 +52,35 @@ export const ChallengesNav = ({
       }}
       sticky={true}
     >
-      <XStack css={{ marginRight: "auto" }}>
+      {showBackButton && (
+        <XStack
+          css={{
+            width: "$space$40",
+            height: "100%",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          <XStack css={{ margin: "auto" }} onClick={() => router.back()}>
+            <BackButton />
+          </XStack>
+        </XStack>
+      )}
+      <YStack css={{ marginRight: "auto" }}>
+        {showDate && (
+          <Typography variant="xs" css={{ color: "$gray500" }}>
+            {dateString}
+          </Typography>
+        )}
         <Typography variant="h4" color="$gray900">
           Code Cube
         </Typography>
-      </XStack>
-      <XStack css={{ margin: "auto", paddingLeft: "$40" }}>{timer}</XStack>
+      </YStack>
+      {showCountdown && (
+        <XStack css={{ margin: "auto", paddingLeft: "$40" }}>
+          {showCountdown}
+        </XStack>
+      )}
       <XStack
         alignItems="center"
         css={{
@@ -39,17 +88,7 @@ export const ChallengesNav = ({
           gap: "$10",
         }}
       >
-        {isSandboxPage ? (
-          <Button type={"violet"} css={{ width: "$space$134" }}>
-            Submit Test
-          </Button>
-        ) : (
-          <ModalBody body={<TaskModalContent />}>
-            <Button type={"violet"} css={{ width: "$space$128" }}>
-              Start Test
-            </Button>
-          </ModalBody>
-        )}
+        {actionButton && <XStack>{actionButton}</XStack>}
         <Bell />
         <XStack
           css={{

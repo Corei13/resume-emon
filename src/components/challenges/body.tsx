@@ -24,6 +24,14 @@ export const ChallengeBody = () => {
     };
   }, []);
 
+  const startTestButton = (
+    <ModalBody body={<TaskModalContent />}>
+      <Button type={"violet"} css={{ width: "$space$128" }}>
+        Start Test
+      </Button>
+    </ModalBody>
+  );
+
   return (
     <YStack css={{ width: "100%", paddingBottom: "$60" }}>
       <XStack
@@ -36,7 +44,7 @@ export const ChallengeBody = () => {
         }}
         sticky={true}
       >
-        <ChallengesNav />
+        <ChallengesNav actionButton={startTestButton} />
       </XStack>
       <YStack css={{ paddingX: "$40", paddingTop: "$40" }}>
         <CodeCube components={components} />

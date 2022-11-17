@@ -69,7 +69,6 @@ class DatabaseController {
   };
 
   public saveCodeBlocks = async (username: string, codeblocks: CodeBlocks) => {
-    console.log("test", codeblocks, username);
     await this.client?.codeBlocks.upsert({
       where: {
         username,

@@ -4,9 +4,8 @@ import { ApiRoutes } from "@src/utils/routes";
 import { useEffect } from "react";
 export const SandpackEditor = () => {
   const { sandpack } = useSandpack();
-  const { files, activeFile, setActiveFile } = sandpack;
+  const { files, activeFile } = sandpack;
   const code = files[activeFile].code;
-  console.log(code);
 
   useEffect(() => {
     try {

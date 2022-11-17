@@ -9,8 +9,9 @@ import { nightOwl } from "@codesandbox/sandpack-themes";
 import { useEffect, useState } from "react";
 import { Preview } from "@src/components/sandbox/preview";
 import { SandpackEditor } from "@src/components/sandbox/sandpackCodeEditor";
+import { CodeBlocks } from "@src/types";
 
-export const Editor = () => {
+export const Editor = ({ codeBlocks }: { codeBlocks?: CodeBlocks }) => {
   const [height, setHeight] = useState(0);
 
   const initialFile = `export default function App() {
@@ -38,7 +39,9 @@ export const Editor = () => {
         template="react"
         theme={nightOwl}
         style={{ width: "100%" }}
-        files={{ "/App.js": initialFile }}
+        files={{
+          "/App.js": `${codeBlocks?.code ? codeBlocks.code : initialFile}`,
+        }}
       >
         <XStack css={{ width: "100%" }}>
           <XStack
@@ -61,3 +64,5 @@ export const Editor = () => {
     </XStack>
   );
 };
+
+export default Editor;
