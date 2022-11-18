@@ -19,6 +19,7 @@ import { useHydrateAtoms } from "jotai/utils";
 import { usernameAtom } from "@src/atoms/username";
 import { DefaultData } from "@src/utils/defaults";
 import { MainView } from "@src/components/mainView";
+import { getSession } from "next-auth/react";
 
 export default function ResumePage({
   resume,
@@ -65,6 +66,15 @@ export default function ResumePage({
 export async function getServerSideProps(context: NextPageContext) {
   const { username } = context.query;
   const resume = await databaseController.getResume(username as string);
+
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+      },
+    };
+  }
 
   return { props: { resume, username } };
 }

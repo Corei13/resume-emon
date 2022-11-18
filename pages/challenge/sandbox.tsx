@@ -5,6 +5,8 @@ import { Timer } from "@src/components/challenges/timer";
 import { Editor } from "@src/components/sandbox/editor";
 import { YStack } from "@src/components/stack";
 import databaseController from "@src/controllers/databaseController";
+import { NextPageContext } from "next";
+import { getSession } from "next-auth/react";
 
 const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks }) => {
   const submitButton = (
@@ -29,7 +31,16 @@ const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks }) => {
 
 export default SandBox;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context: NextPageContext) => {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+      },
+    };
+  }
+
   const username = "test";
   const codeBlocks = await databaseController.getCodeBlocks(username);
 

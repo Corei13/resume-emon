@@ -1,6 +1,8 @@
 import { LoginModal } from "@src/components/authentication/loginModal";
 import { XStack } from "@src/components/stack";
 import { styled } from "@src/stitches.config";
+import { NextPageContext } from "next";
+import { getSession, signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 
 const StyledImage = styled(Image, {
@@ -11,6 +13,8 @@ const StyledImage = styled(Image, {
 });
 
 const Login = () => {
+  const { data: session } = useSession();
+
   return (
     <XStack css={{ width: "100%" }}>
       <XStack
@@ -23,7 +27,7 @@ const Login = () => {
           backgroundSize: "cover",
         }}
       >
-        <LoginModal />
+        <LoginModal signIn={() => signIn()} session={session} />
       </XStack>
       <XStack css={{ width: "40%", position: "relative" }}>
         <StyledImage
@@ -34,6 +38,19 @@ const Login = () => {
       </XStack>
     </XStack>
   );
+};
+
+export const getServerSideProps = async (context: NextPageContext) => {
+  const session = await getSession(context);
+  if (session) {
+    return {
+      redirect: {
+        destination: "/resumes",
+      },
+    };
+  }
+
+  return { props: {} };
 };
 
 export default Login;

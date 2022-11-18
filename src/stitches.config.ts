@@ -31,6 +31,7 @@ export const {
       gray200: "#EEEFF0",
       gray150: "#F8F8F8",
       gray100: "#F9FAFB",
+      red500: "#F44E6C",
       pdfBg: "#525659",
       blue900: "#526DFC",
       blue800: "#264F9E",
