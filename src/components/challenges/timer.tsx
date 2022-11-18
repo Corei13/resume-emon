@@ -15,7 +15,7 @@ const renderer = ({
   return (
     <XStack>
       {hours}:{minutes}:
-      <Typography css={{ color: "$deepBlue" }}>{seconds}</Typography>
+      <Typography css={{ color: "$blue900" }}>{seconds}</Typography>
     </XStack>
   );
 };

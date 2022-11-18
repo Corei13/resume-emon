@@ -34,7 +34,7 @@ export const NavButton = (props: TNavButton) => {
         <Typography
           variant="sm"
           color={`${
-            props.isSelected ? theme.colors.deepBlue : theme.colors.gray500
+            props.isSelected ? theme.colors.blue900 : theme.colors.gray500
           }`}
         >
           {props.label}

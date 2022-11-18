@@ -27,7 +27,7 @@ export const ChallengeBody = () => {
 
   const startTestButton = (
     <ModalBody body={<TaskModalContent />}>
-      <Button type={"deepBlue"} css={{ width: "$space$128" }}>
+      <Button type={"blue900"} css={{ width: "$space$128" }}>
         Start Test
       </Button>
     </ModalBody>
@@ -54,7 +54,7 @@ export const ChallengeBody = () => {
         <XStack css={{ paddingTop: "$52" }}>
           <Typography
             variant="lg"
-            color="$deepBlue"
+            color="$blue900"
             css={{ fontWeight: "bold", margin: "auto" }}
           >
             Ready to make it happen ?
@@ -66,8 +66,8 @@ export const ChallengeBody = () => {
               type={"white"}
               css={{
                 width: "100%",
-                border: "1px solid $deepBlue",
-                color: "$deepBlue",
+                border: "1px solid $blue900",
+                color: "$blue900",
               }}
             >
               Start Test

@@ -9,7 +9,7 @@ export const HomeLeftBar = () => {
   return (
     <YStack
       css={{
-        width: "178px",
+        width: "$178",
         height: "100vh",
         boxShadow: "0px $space$16 $space$28 0px $colors$gray200",
         zIndex: 999999,
@@ -23,7 +23,7 @@ export const HomeLeftBar = () => {
           width: "100%",
           alignItems: "center",
           paddingX: "$20",
-          borderBottom: "1px solid $gray200",
+          borderBottom: "$space$1 solid $gray200",
           marginBottom: "$10",
         }}
       >

@@ -23,15 +23,15 @@ export const ResumeCard = ({
         height: "$space$72",
         marginX: "$space$40",
         marginY: "$space$12",
-        border: "1px solid $colors$gray300",
+        border: "$space$1 solid $colors$gray300",
         borderRadius: "$space$6",
         alignItems: "center",
         paddingX: "$space$20",
         "&:hover": {
-          border: "1px solid $colors$deepBlue",
+          border: "$space$1 solid $colors$blue900",
           boxShadow: "0 $space$16 $space$28 $colors$gray200",
           ".child": {
-            color: "$deepBlue",
+            color: "$blue900",
             backgroundColor: "$lavender",
           },
         },

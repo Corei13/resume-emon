@@ -8,7 +8,7 @@ import databaseController from "@src/controllers/databaseController";
 
 const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks }) => {
   const submitButton = (
-    <Button type={"deepBlue"} css={{ width: "$space$134" }}>
+    <Button type={"blue900"} css={{ width: "$space$134" }}>
       Submit Test
     </Button>
   );

@@ -102,8 +102,8 @@ export const ChallengesNav = ({
           css={{
             overflow: "hidden",
             borderRadius: "100%",
-            height: "32px",
-            width: "32px",
+            height: "$32",
+            width: "$32",
           }}
         >
           <Image

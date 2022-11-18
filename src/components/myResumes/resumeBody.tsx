@@ -11,8 +11,8 @@ export const ResumeBody = () => {
       type={"white"}
       css={{
         width: "$space$160",
-        border: "1px solid $deepBlue",
-        color: "$deepBlue",
+        border: "$space$1 solid $blue900",
+        color: "$blue900",
       }}
     >
       Create a Resume
@@ -32,7 +32,7 @@ export const ResumeBody = () => {
       alignItems="center"
       space={"$10"}
       css={{
-        border: "1px solid $deepBlue",
+        border: "$space$1 solid $blue900",
         height: "$space$40",
         width: "$space$284",
         paddingX: "$20",

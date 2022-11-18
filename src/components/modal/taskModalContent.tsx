@@ -24,7 +24,7 @@ export const TaskModalContent = () => {
       </XStack>
       <Typography
         variant="md"
-        color="$deepBlue"
+        color="$blue900"
         css={{
           fontWeight: "bold",
           lineHeight: "$space$18",
@@ -40,8 +40,8 @@ export const TaskModalContent = () => {
         css={{
           overflow: "hidden",
           borderRadius: "6px",
-          height: "158px",
-          width: "518px",
+          height: "$158",
+          width: "$518",
           marginBottom: "$20",
         }}
       >
@@ -61,7 +61,7 @@ export const TaskModalContent = () => {
         </Button>
         <Link href={"/challenge/sandbox"}>
           <Button
-            type={"deepBlue"}
+            type={"blue900"}
             css={{ width: "$space$252", height: "$space$48" }}
           >
             Start Test
