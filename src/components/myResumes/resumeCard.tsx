@@ -1,6 +1,6 @@
-import { Cross } from "@src/components/icons/cross";
-import { Edit } from "@src/components/icons/edit";
-import { LinkIcon } from "@src/components/icons/linkIcon";
+import { CrossIcon } from "@src/components/icons/cross";
+import { EditIcon } from "@src/components/icons/edit";
+import { LinkIcon } from "@src/components/icons/link";
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 
@@ -61,9 +61,9 @@ export const ResumeCard = ({
         >
           PDF ↓
         </XStack>
-        <Edit />
+        <EditIcon />
         <LinkIcon />
-        <Cross />
+        <CrossIcon />
       </XStack>
     </XStack>
   );

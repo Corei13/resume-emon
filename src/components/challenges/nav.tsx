@@ -1,9 +1,9 @@
-import { Bell } from "@src/components/icons/bell";
+import { BellIcon } from "@src/components/icons/bell";
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 import Image from "next/image";
 import React from "react";
-import { BackButton } from "@src/components/icons/backButton";
+import { BackButtonIcon } from "@src/components/icons/backButton";
 import { useRouter } from "next/router";
 import { MonthShortNames } from "@src/utils/constants";
 
@@ -53,7 +53,7 @@ export const ChallengesNav = ({
           }}
         >
           <XStack css={{ margin: "auto" }} onClick={() => router.back()}>
-            <BackButton />
+            <BackButtonIcon />
           </XStack>
         </XStack>
       )}
@@ -97,7 +97,7 @@ export const ChallengesNav = ({
         }}
       >
         {actionButton && <XStack>{actionButton}</XStack>}
-        <Bell />
+        <BellIcon />
         <XStack
           css={{
             overflow: "hidden",

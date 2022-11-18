@@ -1,4 +1,4 @@
-import { Clock } from "@src/components/icons/clock";
+import { ClockIcon } from "@src/components/icons/clock";
 import { XStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 import Countdown from "react-countdown";
@@ -23,7 +23,7 @@ const renderer = ({
 export const Timer = () => {
   return (
     <XStack space={"$8"} css={{ width: "100%" }}>
-      <Clock />
+      <ClockIcon />
       <Countdown date={Date.now() + 1000000000} renderer={renderer} />
     </XStack>
   );

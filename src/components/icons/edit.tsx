@@ -1,4 +1,4 @@
-export const Edit = () => {
+export const EditIcon = () => {
   return (
     <svg
       width="28"

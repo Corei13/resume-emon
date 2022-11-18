@@ -1,6 +1,6 @@
 import { Button } from "@src/components/button";
 import { ChallengesNav } from "@src/components/challenges/nav";
-import { Search } from "@src/components/icons/search";
+import { SearchIcon } from "@src/components/icons/search";
 import { ResumeCard } from "@src/components/myResumes/resumeCard";
 import { XStack, YStack } from "@src/components/stack";
 import { styled } from "@src/stitches.config";
@@ -39,7 +39,7 @@ export const ResumeBody = () => {
         borderRadius: "$space$6",
       }}
     >
-      <Search />
+      <SearchIcon />
       <StyledInput placeholder="Search for resume, keywords" />
     </XStack>
   );

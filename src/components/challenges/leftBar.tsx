@@ -1,8 +1,8 @@
 import { NavButton } from "@src/components/challenges/leftbarButton";
-import { BackArrow } from "@src/components/icons/backArrow";
-import { Challenges } from "@src/components/icons/challenges";
-import { MyResume } from "@src/components/icons/myResume";
-import { Resume } from "@src/components/icons/resume";
+import { BackArrowIcon } from "@src/components/icons/backArrow";
+import { ChallengesIcon } from "@src/components/icons/challenges";
+import { MyResumeIcon } from "@src/components/icons/myResume";
+import { ResumeIcon } from "@src/components/icons/resume";
 import { XStack, YStack } from "@src/components/stack";
 
 export const HomeLeftBar = () => {
@@ -27,16 +27,16 @@ export const HomeLeftBar = () => {
           marginBottom: "$10",
         }}
       >
-        <Resume /> <BackArrow />
+        <ResumeIcon /> <BackArrowIcon />
       </XStack>
       <YStack space={"$16"}>
         <NavButton
-          icon={<MyResume isSelected={false} />}
+          icon={<MyResumeIcon isSelected={false} />}
           label="My Resumes"
           isSelected={false}
         />
         <NavButton
-          icon={<Challenges isSelected={true} />}
+          icon={<ChallengesIcon isSelected={true} />}
           label="Challenges"
           isSelected={true}
         />

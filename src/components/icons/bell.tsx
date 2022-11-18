@@ -1,4 +1,4 @@
-export const Bell = () => {
+export const BellIcon = () => {
   return (
     <svg
       width="16"

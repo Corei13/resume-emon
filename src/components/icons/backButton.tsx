@@ -1,4 +1,4 @@
-export const BackButton = () => {
+export const BackButtonIcon = () => {
   return (
     <svg
       width="14"
