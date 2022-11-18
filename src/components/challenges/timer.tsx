@@ -15,14 +15,14 @@ const renderer = ({
   return (
     <XStack>
       {hours}:{minutes}:
-      <Typography css={{ color: "$violet" }}>{seconds}</Typography>
+      <Typography css={{ color: "$deepBlue" }}>{seconds}</Typography>
     </XStack>
   );
 };
 
 export const Timer = () => {
   return (
-    <XStack css={{ gap: "$8", width: "100%" }}>
+    <XStack space={"$8"} css={{ width: "100%" }}>
       <Clock />
       <Countdown date={Date.now() + 1000000000} renderer={renderer} />
     </XStack>

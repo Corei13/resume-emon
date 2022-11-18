@@ -4,13 +4,13 @@ import { Resume } from "@src/components/icons/resume";
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 import { useRouter } from "next/router";
+import React from "react";
 
 export const LoginModal = () => {
   const router = useRouter();
 
-  const signInButtonClicked = (e) => {
-    e.preventDefault();
-    router.push("/my-resumes/dashboard");
+  const signInButtonClicked = () => {
+    router.push("/resumes");
   };
 
   return (
@@ -20,7 +20,7 @@ export const LoginModal = () => {
         height: "$space$532",
         width: "$space$580",
         margin: "auto",
-        boxShadow: "0px 16px 29px #00000014",
+        boxShadow: "0px $space$16 $space$28 #colors$gray200",
         borderRadius: "$space$12",
         alignItems: "center",
         justifyContent: "center",
@@ -40,7 +40,8 @@ export const LoginModal = () => {
       >
         <XStack
           alignItems="center"
-          css={{ justifyContent: "center", gap: "$8" }}
+          space={"$8"}
+          css={{ justifyContent: "center" }}
         >
           <Google /> Sign In with Google
         </XStack>

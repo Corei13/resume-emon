@@ -1,5 +1,4 @@
 import { Cross } from "@src/components/icons/cross";
-import { DownloadPDFIcon } from "@src/components/icons/downloadPDFIcon";
 import { Edit } from "@src/components/icons/edit";
 import { LinkIcon } from "@src/components/icons/linkIcon";
 import { XStack, YStack } from "@src/components/stack";
@@ -29,10 +28,10 @@ export const ResumeCard = ({
         alignItems: "center",
         paddingX: "$space$20",
         "&:hover": {
-          border: "1px solid $colors$violet",
-          boxShadow: "0 $space$16 29px $colors$gray300",
+          border: "1px solid $colors$deepBlue",
+          boxShadow: "0 $space$16 $space$28 $colors$gray200",
           ".child": {
-            color: "$violet",
+            color: "$deepBlue",
             backgroundColor: "$lavender",
           },
         },
@@ -46,9 +45,10 @@ export const ResumeCard = ({
           {date}
         </Typography>
       </YStack>
-      <XStack css={{ gap: "$space$16" }}>
+      <XStack space={"$16"}>
         <XStack
           className="child"
+          space={"$4"}
           css={{
             height: "$space$28",
             width: "$space$70",
@@ -57,10 +57,9 @@ export const ResumeCard = ({
             alignItems: "center",
             justifyContent: "center",
             fontSize: "$space$12",
-            gap: "$space$4",
           }}
         >
-          PDF <DownloadPDFIcon />
+          PDF ↓
         </XStack>
         <Edit />
         <LinkIcon />

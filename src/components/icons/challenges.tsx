@@ -1,7 +1,7 @@
 import { theme } from "@src/stitches.config";
 
 export const Challenges = ({ isSelected }: { isSelected: boolean }) => {
-  const fillIcon = isSelected ? theme.colors.violet : theme.colors.gray500;
+  const fillIcon = isSelected ? theme.colors.deepBlue : theme.colors.gray500;
 
   return (
     <svg

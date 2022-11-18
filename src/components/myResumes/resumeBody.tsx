@@ -11,8 +11,8 @@ export const ResumeBody = () => {
       type={"white"}
       css={{
         width: "$space$160",
-        border: "1px solid $violet",
-        color: "$violet",
+        border: "1px solid $deepBlue",
+        color: "$deepBlue",
       }}
     >
       Create a Resume
@@ -30,12 +30,12 @@ export const ResumeBody = () => {
   const searchInput = (
     <XStack
       alignItems="center"
+      space={"$10"}
       css={{
-        border: "1px solid $violet",
+        border: "1px solid $deepBlue",
         height: "$space$40",
         width: "$space$284",
         paddingX: "$20",
-        gap: "$10",
         borderRadius: "$space$6",
       }}
     >

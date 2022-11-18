@@ -27,13 +27,14 @@ export const NavButton = (props: TNavButton) => {
     <XStack css={{ width: "100%", alignItems: "center" }}>
       {props.isSelected && <Selected />}
       <XStack
-        css={{ gap: "$10", marginLeft: leftMargin, alignItems: "center" }}
+        space={"$10"}
+        css={{ marginLeft: leftMargin, alignItems: "center" }}
       >
         {props.icon}
         <Typography
           variant="sm"
           color={`${
-            props.isSelected ? theme.colors.violet : theme.colors.gray500
+            props.isSelected ? theme.colors.deepBlue : theme.colors.gray500
           }`}
         >
           {props.label}

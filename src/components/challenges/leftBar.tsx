@@ -11,17 +11,17 @@ export const HomeLeftBar = () => {
       css={{
         width: "178px",
         height: "100vh",
-        boxShadow: "0px 16px 29px 0px #00000014",
+        boxShadow: "0px $space$16 $space$28 0px $colors$gray200",
         zIndex: 999999,
       }}
       sticky={true}
     >
       <XStack
+        space={"$20"}
         css={{
           height: "$space$80",
           width: "100%",
           alignItems: "center",
-          gap: "$20",
           paddingX: "$20",
           borderBottom: "1px solid $gray200",
           marginBottom: "$10",
@@ -29,7 +29,7 @@ export const HomeLeftBar = () => {
       >
         <Resume /> <BackArrow />
       </XStack>
-      <YStack css={{ gap: "$16" }}>
+      <YStack space={"$16"}>
         <NavButton
           icon={<MyResume isSelected={false} />}
           label="My Resumes"

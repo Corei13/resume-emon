@@ -57,7 +57,7 @@ export const ChallengesNav = ({
           </XStack>
         </XStack>
       )}
-      <XStack css={{ textAlign: "center", gap: "$16" }}>
+      <XStack space={"$16"} css={{ textAlign: "center" }}>
         <YStack
           css={{
             alignItems: "center",
@@ -91,9 +91,9 @@ export const ChallengesNav = ({
       )}
       <XStack
         alignItems="center"
+        space={"$10"}
         css={{
           marginLeft: "auto",
-          gap: "$10",
         }}
       >
         {actionButton && <XStack>{actionButton}</XStack>}

@@ -77,7 +77,7 @@ export const ItemTitle = ({
         paddingRight: "$8",
         borderRadius: "$space$4",
         "&:hover": {
-          boxShadow: "0 0 0 1px $colors$primary5",
+          boxShadow: "0 0 0 $space$1 $colors$primary5",
           ".modifiers": {
             visibility: "visible",
           },

@@ -13,7 +13,7 @@ export const TaskModalContent = () => {
         <Typography variant="h4" color="$gray900">
           Code Cube
         </Typography>
-        <XStack css={{ marginLeft: "auto", gap: "$4" }}>
+        <XStack space={"$4"} css={{ marginLeft: "auto" }}>
           <Typography variant="sm" color="$gray500">
             Estimated time
           </Typography>
@@ -24,7 +24,7 @@ export const TaskModalContent = () => {
       </XStack>
       <Typography
         variant="md"
-        color="$violet"
+        color="$deepBlue"
         css={{
           fontWeight: "bold",
           lineHeight: "$space$18",
@@ -52,7 +52,7 @@ export const TaskModalContent = () => {
           width="515px"
         ></Image>
       </XStack>
-      <XStack css={{ gap: "$14" }}>
+      <XStack space={"$14"}>
         <Button
           type={"white"}
           css={{ width: "$space$252", height: "$space$48" }}
@@ -61,7 +61,7 @@ export const TaskModalContent = () => {
         </Button>
         <Link href={"/challenge/sandbox"}>
           <Button
-            type={"violet"}
+            type={"deepBlue"}
             css={{ width: "$space$252", height: "$space$48" }}
           >
             Start Test

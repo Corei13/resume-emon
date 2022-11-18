@@ -27,7 +27,7 @@ export const ChallengeBody = () => {
 
   const startTestButton = (
     <ModalBody body={<TaskModalContent />}>
-      <Button type={"violet"} css={{ width: "$space$128" }}>
+      <Button type={"deepBlue"} css={{ width: "$space$128" }}>
         Start Test
       </Button>
     </ModalBody>
@@ -41,7 +41,9 @@ export const ChallengeBody = () => {
           height: "$space$96",
           alignItems: "center",
           backgroundColor: "$white",
-          boxShadow: `${scroll ? "29px 16px 29px 0px #00000014" : ""}`,
+          boxShadow: `${
+            scroll ? "$space$28 $space$16 $space$28 0 $colors$gray200" : ""
+          }`,
         }}
         sticky={true}
       >
@@ -52,7 +54,7 @@ export const ChallengeBody = () => {
         <XStack css={{ paddingTop: "$52" }}>
           <Typography
             variant="lg"
-            color="$violet"
+            color="$deepBlue"
             css={{ fontWeight: "bold", margin: "auto" }}
           >
             Ready to make it happen ?
@@ -64,8 +66,8 @@ export const ChallengeBody = () => {
               type={"white"}
               css={{
                 width: "100%",
-                border: "1px solid $violet",
-                color: "$violet",
+                border: "1px solid $deepBlue",
+                color: "$deepBlue",
               }}
             >
               Start Test

@@ -7,9 +7,9 @@ export const Button = styled("button", {
   cursor: "pointer",
   variants: {
     type: {
-      violet: {
+      deepBlue: {
         margin: "auto",
-        backgroundColor: "$violet",
+        backgroundColor: "$deepBlue",
         color: "$white",
         border: "0",
       },

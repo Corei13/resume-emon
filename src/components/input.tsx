@@ -24,7 +24,7 @@ const StyledTextarea = styled("textarea", {
   outline: "none",
   fontWeight: "$medium",
   width: "100%",
-  boxShadow: "0 0 0 1px $colors$gray300",
+  boxShadow: "0 0 0 $space$1 $colors$gray300",
   padding: "$6",
   borderRadius: "$space$2",
   fontFamily: "inherit",
@@ -81,7 +81,7 @@ export const TextInput = ({
         justifyContent: "space-between",
         gap: "$16",
         "&:hover, &:focus-within": {
-          boxShadow: "0 0 0 1px $colors$gray300",
+          boxShadow: "0 0 0 $space$1 $colors$gray300",
         },
       }}
     >
