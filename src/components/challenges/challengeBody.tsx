@@ -34,12 +34,12 @@ export const ChallengeBody = () => {
   );
 
   return (
-    <YStack css={{ width: "100%", paddingBottom: "$60" }}>
+    <YStack padding={"0 0 $space$60 0"} css={{ width: "100%" }}>
       <XStack
+        alignItems="center"
         css={{
           width: "100%",
           height: "$space$96",
-          alignItems: "center",
           backgroundColor: "$white",
           boxShadow: `${
             scroll ? "$space$28 $space$16 $space$28 0 $colors$gray200" : ""
@@ -49,9 +49,9 @@ export const ChallengeBody = () => {
       >
         <ChallengesNav navTitle="Code Cube" actionButton={startTestButton} />
       </XStack>
-      <YStack css={{ paddingX: "$40", paddingTop: "$40" }}>
+      <YStack padding={"$space$40 $space$40 0"}>
         <CodeCube components={components} />
-        <XStack css={{ paddingTop: "$52" }}>
+        <XStack padding={"$space$52 0 0 0"}>
           <Typography
             variant="lg"
             color="$blue900"
@@ -60,7 +60,7 @@ export const ChallengeBody = () => {
             Ready to make it happen ?
           </Typography>
         </XStack>
-        <XStack css={{ width: "100%", paddingTop: "$16" }}>
+        <XStack padding={"$space$16 0 0 0"} css={{ width: "100%" }}>
           <ModalBody body={<TaskModalContent />}>
             <Button
               type={"white"}

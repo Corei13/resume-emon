@@ -34,9 +34,8 @@ export const TopNav = () => {
   return (
     <XStack
       justifyContent="space-between"
+      padding={"$space$8 $space$16"}
       css={{
-        paddingX: "$16",
-        paddingY: "$8",
         borderBottom: "2px solid $gray200",
       }}
     >

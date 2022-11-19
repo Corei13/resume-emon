@@ -27,14 +27,14 @@ export const ResumeCard = ({
 }) => {
   return (
     <XStack
+      alignItems="center"
+      padding={"0 $space$20"}
       css={{
         height: "$space$72",
         marginX: "$space$40",
         marginY: "$space$12",
         border: "$space$1 solid $colors$gray300",
         borderRadius: "$space$6",
-        alignItems: "center",
-        paddingX: "$space$20",
         "&:hover": {
           border: "$space$1 solid $colors$blue900",
           boxShadow: "0 $space$16 $space$28 $colors$gray200",

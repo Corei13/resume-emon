@@ -28,11 +28,7 @@ export const Preview = ({
             overflowY: "scroll",
           }}
         >
-          <YStack
-            css={{
-              padding: "$32",
-            }}
-          >
+          <YStack padding={"$space$32"}>
             <YStack>
               <CodeCube components={components} />
             </YStack>

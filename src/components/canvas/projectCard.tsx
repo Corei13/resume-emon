@@ -14,7 +14,7 @@ type ProjectCardProps = {
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <XStack css={{ paddingBottom: "$26", gap: "$26", alignItems: "center" }}>
+    <XStack space={"$26"} alignItems="center" padding={"0 0 $space$26 0"}>
       <StyledImage
         rounded
         src={project.screenshots[0]?.screenshot || placeholderImageLink}

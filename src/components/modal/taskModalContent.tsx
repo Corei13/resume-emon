@@ -7,9 +7,7 @@ import Link from "next/link";
 export const TaskModalContent = () => {
   return (
     <YStack css={{ width: "520px" }}>
-      <XStack
-        css={{ alignItems: "center", width: "100%", marginBottom: "$24" }}
-      >
+      <XStack alignItems="center" css={{ width: "100%", marginBottom: "$24" }}>
         <Typography variant="h4" color="$gray900">
           Code Cube
         </Typography>

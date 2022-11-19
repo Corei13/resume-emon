@@ -30,11 +30,11 @@ const SearchInput = (
   <XStack
     alignItems="center"
     space={"$10"}
+    padding={"0 $space$20"}
     css={{
       border: "$space$1 solid $blue900",
       height: "$space$40",
       width: "$space$284",
-      paddingX: "$20",
       borderRadius: "$space$6",
     }}
   >

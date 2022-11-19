@@ -21,10 +21,10 @@ export const ResumeCanvas = () => {
         <ProfileImages />
         <ProfileInfo />
         <XStack
+          space={"$36"}
           css={{
             marginTop: "$32",
             marginX: "$40",
-            gap: "$36",
             borderBottom: "2px solid $gray200",
           }}
         >

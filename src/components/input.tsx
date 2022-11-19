@@ -73,13 +73,12 @@ export const TextInput = ({
 
   return (
     <XStack
+      justifyContent="space-between"
+      alignItems="center"
+      space={"$16"}
+      padding="$space$6 $space$8"
       css={{
-        paddingX: "$8",
-        paddingY: "$6",
         borderRadius: "$space$2",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: "$16",
         "&:hover, &:focus-within": {
           boxShadow: "0 0 0 $space$1 $colors$gray300",
         },
@@ -132,12 +131,11 @@ export const ParagraphInput = ({
 
   return (
     <YStack
+      alignItems="start"
+      space={"$12"}
+      padding={"$space$6 $padding$8"}
       css={{
-        paddingX: "$8",
-        paddingY: "$6",
         borderRadius: "$space$2",
-        alignItems: "start",
-        gap: "$12",
       }}
     >
       <label htmlFor={name.replace(" ", "-") + "-input"}>
@@ -209,13 +207,12 @@ export const SelectMonthYearInput = ({
 
   return (
     <XStack
+      justifyContent="space-between"
+      alignItems="center"
+      space={"$16"}
+      padding={"$space$6 $padding$8"}
       css={{
-        paddingX: "$8",
-        paddingY: "$6",
         borderRadius: "$space$2",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: "$16",
       }}
     >
       <label htmlFor={name.replace(" ", "-") + "-input"}>
@@ -230,7 +227,7 @@ export const SelectMonthYearInput = ({
           {title || name}
         </Typography>
       </label>
-      <XStack css={{ gap: "$16" }}>
+      <XStack space={"$16"}>
         {!hideMonth && (
           <SelectInput
             {...props}

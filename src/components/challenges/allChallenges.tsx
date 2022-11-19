@@ -7,7 +7,7 @@ export const AllChallenges = () => {
   return (
     <YStack css={{ width: "100%" }}>
       <ChallengesNav navTitle="Challenges" noBorder={true} />
-      <YStack space={"$24"} css={{ paddingX: "$40" }}>
+      <YStack space={"$24"} padding={"0 $space$40"}>
         <Typography variant="xs" color="$gray500">
           06 Challenges showing
         </Typography>

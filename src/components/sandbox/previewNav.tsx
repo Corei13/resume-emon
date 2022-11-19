@@ -12,12 +12,12 @@ export const PreviewNav = ({
   return (
     <XStack
       alignItems="center"
+      padding={"0 0 0 $space$22"}
       css={{
         width: "100%",
         height: "$space$46",
         backgroundColor: "$gray150",
         color: "$gray900",
-        paddingLeft: "$22",
       }}
     >
       <Button

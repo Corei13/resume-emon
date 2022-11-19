@@ -34,12 +34,11 @@ export const ChallengesNav = ({
   return (
     <XStack
       justifyContent="space-between"
+      alignItems="center"
+      padding={`0 $space$40 0 ${showBackButton ? "0" : "$space$40"}`}
       css={{
-        paddingLeft: `${showBackButton ? "0" : "$space$40"}`,
-        paddingRight: "$40",
         width: "100%",
         height: "$space$96",
-        alignItems: "center",
         borderBottom: `${noBorder ? "0" : "1px solid #EEEFF0"}`,
         backgroundColor: "$white",
       }}
@@ -61,12 +60,7 @@ export const ChallengesNav = ({
           </XStack>
         )}
         <XStack space={"$16"} css={{ textAlign: "center", height: "100%" }}>
-          <YStack
-            css={{
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <YStack justifyContent="center" alignItems="center">
             {showDate && (
               <Typography
                 variant="xs"
@@ -101,8 +95,8 @@ export const ChallengesNav = ({
       <XStack
         alignItems="center"
         space={"$10"}
+        justifyContent="flex-end"
         css={{
-          justifyContent: "flex-end",
           width: "45%",
         }}
       >

@@ -17,12 +17,12 @@ export const HomeLeftBar = () => {
       sticky={true}
     >
       <XStack
+        alignItems="center"
         space={"$20"}
+        padding={"0 $space$20"}
         css={{
           height: "$space$80",
           width: "100%",
-          alignItems: "center",
-          paddingX: "$20",
           borderBottom: "$space$1 solid $gray200",
           marginBottom: "$10",
         }}

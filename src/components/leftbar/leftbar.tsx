@@ -8,13 +8,12 @@ import { YStack } from "@src/components/stack";
 export const LeftBar = () => {
   return (
     <YStack
+      padding={"0 $space$16 $space$16"}
       css={{
         flexGrow: 1,
         flexShrink: 0,
         minWidth: "15%",
         marginTop: "$40",
-        paddingBottom: "$16",
-        paddingX: "$16",
         overflow: "auto",
         userSelect: "none",
       }}

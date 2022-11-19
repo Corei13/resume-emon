@@ -22,11 +22,11 @@ const SearchExistInput = () => (
   <XStack
     alignItems="center"
     space={"$10"}
+    padding={"0 $space$20"}
     css={{
       border: "$space$1 solid $red500",
       height: "2.75rem",
       width: "20.125rem",
-      paddingX: "$20",
       borderRadius: "$space$6",
     }}
   >
@@ -52,6 +52,8 @@ export const LoginModal = ({
 
   return (
     <YStack
+      justifyContent="center"
+      alignItems="center"
       css={{
         backgroundColor: "$white",
         height: "$space$532",
@@ -59,8 +61,6 @@ export const LoginModal = ({
         margin: "auto",
         boxShadow: "0px $space$16 $space$28 #colors$gray200",
         borderRadius: "$space$12",
-        alignItems: "center",
-        justifyContent: "center",
       }}
     >
       <ResumeIcon />
@@ -102,11 +102,7 @@ export const LoginModal = ({
           css={{ margin: "0", width: "$space$322" }}
           onClick={() => signIn()}
         >
-          <XStack
-            alignItems="center"
-            space={"$8"}
-            css={{ justifyContent: "center" }}
-          >
+          <XStack justifyContent="center" alignItems="center" space={"$8"}>
             <GoogleIcon /> Sign In with Google
           </XStack>
         </Button>

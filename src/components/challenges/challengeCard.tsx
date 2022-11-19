@@ -24,7 +24,7 @@ export const ChallengeCard = ({
   skills: TSkill[];
 }) => {
   return (
-    <XStack css={{ paddingBottom: "$space$50", paddingRight: "$space$28" }}>
+    <XStack padding={"0 $space$28 $space$50 0"}>
       <YStack
         css={{
           width: "$space$350",
@@ -42,15 +42,11 @@ export const ChallengeCard = ({
           height={124}
           width={350}
         />
-        <YStack css={{ padding: "$16" }}>
+        <YStack padding={"$space$16"}>
           <Typography variant="xs" color="$gray500">
             {date}
           </Typography>
-          <XStack
-            alignItems="center"
-            space={"$8"}
-            css={{ paddingBottom: "$10" }}
-          >
+          <XStack alignItems="center" padding={"0 0 $space$10 0"} space={"$8"}>
             <Typography variant="md" weight="bold">
               {title}
             </Typography>
