@@ -1,4 +1,7 @@
-import databaseController from "@src/controllers/databaseController";
+import {
+  getCodeBlocks,
+  saveCodeBlocks,
+} from "@src/controllers/databaseController";
 import { CodeBlocks } from "@src/types";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -10,13 +13,11 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     const username = "test";
-    const codeBlocks = await databaseController.getCodeBlocks(
-      username as string
-    );
+    const codeBlocks = await getCodeBlocks(username as string);
     res.status(200).json(codeBlocks);
   } else if (req.method === "POST") {
     const { codeBlocks, username }: RequestBodyType = req.body;
-    await databaseController.saveCodeBlocks(username, codeBlocks);
+    await saveCodeBlocks(username, codeBlocks);
     res.status(200).json({ message: "Successfully saved!" });
   } else {
     res.status(405).json(null);

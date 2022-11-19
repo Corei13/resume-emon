@@ -1,16 +1,38 @@
 import { ClockIcon } from "@src/components/icons/clock";
 import { XStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
-import Countdown from "react-countdown";
+import { useEffect, useMemo, useState } from "react";
 
-const renderer = ({
-  hours,
-  minutes,
+function useCountdown(initialTime: number) {
+  const [time, setTime] = useState(initialTime);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prev) => prev - 1);
+    }, 1000);
+
+    if (time <= 0) {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  });
+
+  const seconds = useMemo(() => time % 60, [time]);
+  const minutes = useMemo(() => Math.floor(time / 60) % 60, [time]);
+  const hours = useMemo(() => Math.floor(time / 3600), [time]);
+
+  return { seconds, minutes, hours };
+}
+
+const Renderer = ({
   seconds,
+  minutes,
+  hours,
 }: {
-  hours: string;
-  minutes: string;
-  seconds: string;
+  seconds: number;
+  minutes: number;
+  hours: number;
 }) => {
   return (
     <XStack>
@@ -21,10 +43,12 @@ const renderer = ({
 };
 
 export const Timer = () => {
+  const time = useCountdown(10000);
+
   return (
-    <XStack space={"$8"} css={{ width: "100%" }}>
+    <XStack space={"$8"}>
       <ClockIcon />
-      <Countdown date={Date.now() + 1000000000} renderer={renderer} />
+      <Renderer {...time} />
     </XStack>
   );
 };

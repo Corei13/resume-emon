@@ -4,7 +4,7 @@ import { ChallengesNav } from "@src/components/challenges/nav";
 import { Timer } from "@src/components/challenges/timer";
 import { Editor } from "@src/components/sandbox/editor";
 import { YStack } from "@src/components/stack";
-import databaseController from "@src/controllers/databaseController";
+import { getCodeBlocks } from "@src/controllers/databaseController";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 
@@ -42,7 +42,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
   }
 
   const username = "test";
-  const codeBlocks = await databaseController.getCodeBlocks(username);
+  const codeBlocks = await getCodeBlocks(username);
 
   return { props: { codeBlocks } };
 };

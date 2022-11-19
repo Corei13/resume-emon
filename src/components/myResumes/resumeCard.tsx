@@ -3,6 +3,14 @@ import { EditIcon } from "@src/components/icons/edit";
 import { LinkIcon } from "@src/components/icons/link";
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
+import { styled } from "@src/stitches.config";
+
+const TargetXStack = styled(XStack, {
+  height: "$space$28",
+  width: "$space$70",
+  backgroundColor: "$colors$gray100",
+  borderRadius: "$space$72",
+});
 
 export const ResumeCard = ({
   resumeTitle,
@@ -30,7 +38,7 @@ export const ResumeCard = ({
         "&:hover": {
           border: "$space$1 solid $colors$blue900",
           boxShadow: "0 $space$16 $space$28 $colors$gray200",
-          ".child": {
+          [`& ${TargetXStack}`]: {
             color: "$blue900",
             backgroundColor: "$lavender",
           },
@@ -45,22 +53,10 @@ export const ResumeCard = ({
           {date}
         </Typography>
       </YStack>
-      <XStack space={"$16"}>
-        <XStack
-          className="child"
-          space={"$4"}
-          css={{
-            height: "$space$28",
-            width: "$space$70",
-            backgroundColor: "$gray100",
-            borderRadius: "$space$72",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "$space$12",
-          }}
-        >
+      <XStack alignItems="center" space={"$16"}>
+        <TargetXStack justifyContent="center" alignItems="center">
           PDF ↓
-        </XStack>
+        </TargetXStack>
         <EditIcon />
         <LinkIcon />
         <CrossIcon />

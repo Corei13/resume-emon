@@ -33,6 +33,7 @@ export const ChallengesNav = ({
 
   return (
     <XStack
+      justifyContent="space-between"
       css={{
         paddingLeft: `${showBackButton ? "0" : "$space$40"}`,
         paddingRight: "$40",
@@ -44,48 +45,56 @@ export const ChallengesNav = ({
       }}
       sticky={true}
     >
-      {showBackButton && (
-        <XStack
-          css={{
-            width: "$space$40",
-            height: "100%",
-            cursor: "pointer",
-          }}
-        >
-          <XStack css={{ margin: "auto" }} onClick={() => router.back()}>
-            <BackButtonIcon />
+      <XStack css={{ width: "45%", height: "100%" }}>
+        {showBackButton && (
+          <XStack
+            alignItems="center"
+            css={{
+              width: "$space$40",
+              height: "100%",
+              cursor: "pointer",
+            }}
+          >
+            <XStack css={{ margin: "auto" }} onClick={() => router.back()}>
+              <BackButtonIcon />
+            </XStack>
           </XStack>
-        </XStack>
-      )}
-      <XStack space={"$16"} css={{ textAlign: "center" }}>
-        <YStack
-          css={{
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {showDate && (
-            <Typography
-              variant="xs"
-              color="$gray500"
-              css={{
-                marginRight: "auto",
-              }}
-            >
-              {dateString}
-            </Typography>
-          )}
-          <Typography variant="h4" color="$gray900">
-            {navTitle}
-          </Typography>
-        </YStack>
-        {searchInput && (
-          <XStack css={{ marginRight: "auto" }}>{searchInput}</XStack>
         )}
+        <XStack space={"$16"} css={{ textAlign: "center", height: "100%" }}>
+          <YStack
+            css={{
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {showDate && (
+              <Typography
+                variant="xs"
+                color="$gray500"
+                css={{
+                  marginRight: "auto",
+                }}
+              >
+                {dateString}
+              </Typography>
+            )}
+            <Typography variant="h4" color="$gray900">
+              {navTitle}
+            </Typography>
+          </YStack>
+          {searchInput && (
+            <XStack
+              alignItems="center"
+              css={{ marginRight: "auto", height: "100%" }}
+            >
+              {searchInput}
+            </XStack>
+          )}
+        </XStack>
       </XStack>
 
       {showCountdown && (
-        <XStack css={{ margin: "auto", paddingLeft: "$40" }}>
+        <XStack justifyContent="center" css={{ width: "10%" }}>
           {showCountdown}
         </XStack>
       )}
@@ -93,7 +102,8 @@ export const ChallengesNav = ({
         alignItems="center"
         space={"$10"}
         css={{
-          marginLeft: "auto",
+          justifyContent: "flex-end",
+          width: "45%",
         }}
       >
         {actionButton && <XStack>{actionButton}</XStack>}
