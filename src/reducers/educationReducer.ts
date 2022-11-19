@@ -14,7 +14,11 @@ export const educationReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        educations.splice(payload.index[0] + 1, 0, DefaultData.education);
+        educations.splice(
+          payload.index[0] + 1,
+          0,
+          DefaultData.education(payload.username)
+        );
       }
       break;
     case "remove":

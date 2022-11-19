@@ -32,7 +32,11 @@ export const projectsReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        projects.splice(payload.index[0] + 1, 0, DefaultData.project);
+        projects.splice(
+          payload.index[0] + 1,
+          0,
+          DefaultData.project(payload.username)
+        );
       }
       break;
     case "remove":
@@ -72,7 +76,7 @@ export const technologyReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        technologies?.push(DefaultData.technology);
+        technologies?.push(DefaultData.technology());
       }
       break;
     case "remove":
@@ -119,7 +123,7 @@ export const screenshotReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        screenshots?.push(DefaultData.screenshot);
+        screenshots?.push(DefaultData.screenshot());
       }
       break;
     case "remove":

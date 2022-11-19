@@ -16,7 +16,7 @@ export type Description = {
 };
 
 export type Experience = {
-  username?: string;
+  username: string;
   id: number;
   position: string;
   company: string;
@@ -33,7 +33,7 @@ export type Experience = {
 };
 
 export type Education = {
-  username?: string;
+  username: string;
   id: number;
   school: string;
   degree: string;
@@ -56,7 +56,7 @@ export type SkillSection = {
   id: number;
   title: string;
   skills: Skill[];
-  username?: string;
+  username: string;
 };
 
 export type Technology = {
@@ -71,7 +71,7 @@ export type Screenshot = {
 
 export type Project = {
   id: number;
-  username?: string;
+  username: string;
   title: string;
   url: string;
   description: string;
@@ -80,7 +80,9 @@ export type Project = {
 };
 
 export type Resume = {
-  username?: string;
+  id?: string;
+  username: string;
+  title: string;
   profile: Profile;
   experiences: Experience[];
   projects: Project[];
@@ -88,9 +90,22 @@ export type Resume = {
   skills: SkillSection[];
 };
 
+export type Challenge = {
+  id: string;
+  title: string;
+  description: string;
+};
+
 export type CodeBlocks = {
+  id?: string;
   username: string;
   code: string;
+  challengeId?: string;
+};
+
+export type User = {
+  username: string;
+  email: string;
 };
 
 export type TNavButton = {
@@ -118,6 +133,7 @@ export type SectionActionType = {
     field?: string;
     index?: number[];
     value?: unknown;
+    username: string;
   };
 };
 

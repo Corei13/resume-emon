@@ -10,7 +10,7 @@ import { profileReducer } from "@src/reducers/profileReducer";
 import { skillSectionReducer } from "@src/reducers/skillReducer";
 
 export const profileAtom = atomWithReducer(
-  DefaultData.profile,
+  DefaultData.profile(),
   (profile, action: SectionActionType) =>
     produce(profile, (draft) => {
       profileReducer(draft, action);
@@ -18,7 +18,7 @@ export const profileAtom = atomWithReducer(
 );
 
 export const experiencesAtom = atomWithReducer(
-  [DefaultData.experience],
+  [DefaultData.experience("")],
   (experience, action: SectionActionType) =>
     produce(experience, (draft) => {
       experienceReducer(draft, action);
@@ -26,7 +26,7 @@ export const experiencesAtom = atomWithReducer(
 );
 
 export const educationsAtom = atomWithReducer(
-  [DefaultData.education],
+  [DefaultData.education("")],
   (education, action: SectionActionType) =>
     produce(education, (draft) => {
       educationReducer(draft, action);
@@ -34,7 +34,7 @@ export const educationsAtom = atomWithReducer(
 );
 
 export const projectsAtom = atomWithReducer(
-  [DefaultData.project],
+  [DefaultData.project("")],
   (project, action: SectionActionType) =>
     produce(project, (draft) => {
       projectsReducer(draft, action);
@@ -42,7 +42,7 @@ export const projectsAtom = atomWithReducer(
 );
 
 export const skillSectionAtom = atomWithReducer(
-  [DefaultData.skillSection],
+  [DefaultData.skillSection("")],
   (skillSection, action: SectionActionType) =>
     produce(skillSection, (draft) => {
       skillSectionReducer(draft, action);
@@ -74,6 +74,8 @@ const resumeGetter = (get: Getter) => {
   const skills = get(skillSectionAtom);
 
   const resume: Resume = {
+    username: "",
+    title: "",
     profile,
     experiences,
     educations,

@@ -12,52 +12,55 @@ import {
 } from "@src/types";
 
 export const DefaultData = {
-  get experience(): Experience {
+  experience(username: string): Experience {
     return {
+      username,
       id: Math.floor(Math.random() * 100000),
       company: "Add Company",
       position: "Add Position",
       from: { month: new Date().getMonth(), year: new Date().getFullYear() },
       to: { month: new Date().getMonth(), year: new Date().getFullYear() },
-      description: [DefaultData.description],
+      description: [DefaultData.description()],
       location: "Add Location",
     };
   },
 
-  get description(): Description {
+  description(): Description {
     return {
       id: Math.floor(Math.random() * 100000),
       description: "Add Description",
     };
   },
 
-  get project(): Project {
+  project(username: string): Project {
     return {
+      username,
       id: Math.floor(Math.random() * 100000),
       title: "Add Project Name",
       description: "Add Project Description",
       url: "Add Project Link",
-      screenshots: [DefaultData.screenshot],
-      technologies: [DefaultData.technology],
+      screenshots: [DefaultData.screenshot()],
+      technologies: [DefaultData.technology()],
     };
   },
 
-  get screenshot(): Screenshot {
+  screenshot(): Screenshot {
     return {
       id: Math.floor(Math.random() * 100000),
       screenshot: "https://placekitten.com/600/500",
     };
   },
 
-  get technology(): Technology {
+  technology(): Technology {
     return {
       id: Math.floor(Math.random() * 100000),
       technology: "Add Technology",
     };
   },
 
-  get education(): Education {
+  education(username: string): Education {
     return {
+      username,
       id: Math.floor(Math.random() * 100000),
       school: "Add School",
       degree: "Add Degree",
@@ -66,22 +69,23 @@ export const DefaultData = {
     };
   },
 
-  get skillSection(): SkillSection {
+  skillSection(username: string): SkillSection {
     return {
+      username,
       id: Math.floor(Math.random() * 100000),
       title: "Add Skill Section Title",
-      skills: [DefaultData.skill],
+      skills: [DefaultData.skill()],
     };
   },
 
-  get skill(): Skill {
+  skill(): Skill {
     return {
       id: Math.floor(Math.random() * 100000),
       skill: "Add Skill",
     };
   },
 
-  get profile(): Profile {
+  profile(): Profile {
     return {
       name: "Add Name",
       avatar: "https://placekitten.com/200/200",
@@ -94,13 +98,15 @@ export const DefaultData = {
     };
   },
 
-  get resume(): Resume {
+  resume(username: string, title: string): Resume {
     return {
-      profile: DefaultData.profile,
-      experiences: [DefaultData.experience],
-      projects: [DefaultData.project],
-      educations: [DefaultData.education],
-      skills: [DefaultData.skillSection],
+      username,
+      title,
+      profile: DefaultData.profile(),
+      experiences: [DefaultData.experience(username)],
+      projects: [DefaultData.project(username)],
+      educations: [DefaultData.education(username)],
+      skills: [DefaultData.skillSection(username)],
     };
   },
 };

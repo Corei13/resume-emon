@@ -47,7 +47,7 @@ export const LoginModal = ({
   const userNameExist = false;
 
   const goToTheDashBoard = () => {
-    router.push("/resumes");
+    router.push("/login");
   };
 
   return (

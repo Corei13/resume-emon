@@ -8,12 +8,14 @@ import { getCodeBlocks } from "@src/controllers/databaseController";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 
-const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks }) => {
+const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks | null }) => {
   const submitButton = (
     <Button type={"blue900"} css={{ width: "$space$134" }}>
       Submit Test
     </Button>
   );
+
+  console.log("sandbox", codeBlocks);
 
   return (
     <YStack>
@@ -24,7 +26,17 @@ const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks }) => {
         showBackButton={true}
         showDate={true}
       />
-      <Editor codeBlocks={codeBlocks} />
+      {codeBlocks ? (
+        <Editor
+          codeBlocks={{
+            ...codeBlocks,
+            id: codeBlocks.id.toString(),
+            challengeId: codeBlocks.challengeId.toString(),
+          }}
+        />
+      ) : (
+        <Editor />
+      )}
     </YStack>
   );
 };
@@ -33,6 +45,8 @@ export default SandBox;
 
 export const getServerSideProps = async (context: NextPageContext) => {
   const session = await getSession(context);
+  const { username, sandbox } = context.query;
+
   if (!session) {
     return {
       redirect: {
@@ -41,8 +55,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
     };
   }
 
-  const username = "test";
-  const codeBlocks = await getCodeBlocks(username);
+  const codeBlocks = await getCodeBlocks(username as string, Number(sandbox));
 
   return { props: { codeBlocks } };
 };

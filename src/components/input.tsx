@@ -10,6 +10,7 @@ import {
 import { SectionTypes } from "@src/types";
 import { getSectionAtom } from "@src/atoms/resume";
 import { MonthShortNames, ValidYears } from "@src/utils/constants";
+import { usernameAtom } from "@src/atoms/username";
 
 const StyledInput = styled("input", {
   border: "none",
@@ -70,6 +71,7 @@ export const TextInput = ({
   const selectedItemName = useAtomValue(selectedItemNameAtom);
   const sectionAtom = getSectionAtom(section || "none");
   const dispatcher = useSetAtom(sectionAtom);
+  const username = useAtomValue(usernameAtom);
 
   return (
     <XStack
@@ -106,6 +108,7 @@ export const TextInput = ({
             type: "update",
             subsection,
             payload: {
+              username,
               field: name,
               index: selectedItemName?.index,
               value: e.target.value,
@@ -128,6 +131,7 @@ export const ParagraphInput = ({
   const selectedItemName = useAtomValue(selectedItemNameAtom);
   const sectionAtom = getSectionAtom(section || "none");
   const dispatcher = useSetAtom(sectionAtom);
+  const username = useAtomValue(usernameAtom);
 
   return (
     <YStack
@@ -161,6 +165,7 @@ export const ParagraphInput = ({
             type: "update",
             subsection,
             payload: {
+              username,
               field: name,
               index: selectedItemName?.index,
               value: e.target.value,
@@ -204,6 +209,7 @@ export const SelectMonthYearInput = ({
   const selectedItemName = useAtomValue(selectedItemNameAtom);
   const sectionAtom = getSectionAtom(section || "none");
   const dispatcher = useSetAtom(sectionAtom);
+  const username = useAtomValue(usernameAtom);
 
   return (
     <XStack
@@ -242,6 +248,7 @@ export const SelectMonthYearInput = ({
                 type: "update",
                 subsection,
                 payload: {
+                  username,
                   field: name,
                   index: selectedItemName?.index,
                   value: {
@@ -263,6 +270,7 @@ export const SelectMonthYearInput = ({
               type: "update",
               subsection,
               payload: {
+                username,
                 field: name,
                 index: selectedItemName?.index,
                 value: {

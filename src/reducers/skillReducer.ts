@@ -23,7 +23,11 @@ export const skillSectionReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        skills.splice(payload.index[0] + 1, 0, DefaultData.skillSection);
+        skills.splice(
+          payload.index[0] + 1,
+          0,
+          DefaultData.skillSection(payload.username)
+        );
       }
       break;
     case "remove":
@@ -62,7 +66,7 @@ export const skillReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        skills?.push(DefaultData.skill);
+        skills?.push(DefaultData.skill());
       }
       break;
     case "remove":

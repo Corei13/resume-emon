@@ -1,9 +1,10 @@
 import { getSectionAtom } from "@src/atoms/resume";
+import { usernameAtom } from "@src/atoms/username";
 import { Icon } from "@src/components/icon";
 import { XStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 import { SectionTypes } from "@src/types";
-import { useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { useCallback } from "react";
 
 type ItemTitlePropType = {
@@ -34,39 +35,40 @@ export const ItemTitle = ({
   index,
 }: ItemTitlePropType) => {
   const sectionAtom = getSectionAtom(section || "none");
+  const username = useAtomValue(usernameAtom);
   const dispatcher = useSetAtom(sectionAtom);
 
   const onAdd = useCallback(() => {
     dispatcher?.({
       type: "add",
       subsection,
-      payload: { index },
+      payload: { index, username },
     });
-  }, [dispatcher, index, subsection]);
+  }, [dispatcher, index, subsection, username]);
 
   const onUp = useCallback(() => {
     dispatcher?.({
       type: "up",
       subsection,
-      payload: { index },
+      payload: { index, username },
     });
-  }, [dispatcher, index, subsection]);
+  }, [dispatcher, index, subsection, username]);
 
   const onDown = useCallback(() => {
     dispatcher?.({
       type: "down",
       subsection,
-      payload: { index },
+      payload: { index, username },
     });
-  }, [dispatcher, index, subsection]);
+  }, [dispatcher, index, subsection, username]);
 
   const onRemove = useCallback(() => {
     dispatcher?.({
       type: "remove",
       subsection,
-      payload: { index },
+      payload: { index, username },
     });
-  }, [dispatcher, index, subsection]);
+  }, [dispatcher, index, subsection, username]);
 
   return (
     <XStack

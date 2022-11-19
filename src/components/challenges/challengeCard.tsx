@@ -1,6 +1,7 @@
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export type TSkill = {
   stackName: string;
@@ -9,6 +10,7 @@ export type TSkill = {
 };
 
 export const ChallengeCard = ({
+  id,
   thumbnailImagePath,
   date,
   title,
@@ -16,6 +18,7 @@ export const ChallengeCard = ({
   description,
   skills,
 }: {
+  id: string;
   thumbnailImagePath: string;
   date: string;
   title: string;
@@ -23,8 +26,14 @@ export const ChallengeCard = ({
   description: string;
   skills: TSkill[];
 }) => {
+  const router = useRouter();
+
   return (
-    <XStack padding={"0 $space$28 $space$50 0"}>
+    <XStack
+      padding={"0 $space$28 $space$50 0"}
+      onClick={() => router.push(`/challenge-details/${id}`)}
+      css={{ cursor: "pointer" }}
+    >
       <YStack
         css={{
           width: "$space$350",

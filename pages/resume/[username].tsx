@@ -31,10 +31,13 @@ export default function ResumePage({
   useHydrateAtoms([
     [usernameAtom, username],
     [profileAtom, resume?.profile || DefaultData.profile],
-    [experiencesAtom, resume?.experiences || [DefaultData.experience]],
-    [educationsAtom, resume?.educations || [DefaultData.education]],
-    [projectsAtom, resume?.projects || [DefaultData.project]],
-    [skillSectionAtom, resume?.skills || [DefaultData.skillSection]],
+    [
+      experiencesAtom,
+      resume?.experiences || [DefaultData.experience(username)],
+    ],
+    [educationsAtom, resume?.educations || [DefaultData.education(username)]],
+    [projectsAtom, resume?.projects || [DefaultData.project(username)]],
+    [skillSectionAtom, resume?.skills || [DefaultData.skillSection(username)]],
   ] as unknown as Iterable<readonly [Atom<unknown>, unknown]>);
 
   return (

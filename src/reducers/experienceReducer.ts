@@ -23,7 +23,11 @@ export const experienceReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        experiences.splice(payload.index[0] + 1, 0, DefaultData.experience);
+        experiences.splice(
+          payload.index[0] + 1,
+          0,
+          DefaultData.experience(payload.username)
+        );
       }
       break;
     case "remove":
@@ -62,7 +66,7 @@ export const descriptionReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        description?.push(DefaultData.description);
+        description?.push(DefaultData.description());
       }
       break;
     case "remove":

@@ -13,6 +13,7 @@ import { CodeBlocks } from "@src/types";
 
 export const Editor = ({ codeBlocks }: { codeBlocks?: CodeBlocks }) => {
   const [height, setHeight] = useState(0);
+  console.log(codeBlocks);
 
   const initialFile = `export default function App() {
     return <h1>Hello Re:cruit!</h1>;
@@ -44,6 +45,7 @@ export const Editor = ({ codeBlocks }: { codeBlocks?: CodeBlocks }) => {
         }}
       >
         <XStack css={{ width: "100%" }}>
+          hellos
           <XStack
             css={{
               flex: 1,

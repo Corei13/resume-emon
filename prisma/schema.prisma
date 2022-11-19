@@ -20,7 +20,7 @@ model Experience {
   from        Json
   to          Json
   location    String
-  Resume      Resume @relation(fields: [username], references: [username], onDelete: Cascade)
+  Resume      Resume @relation(fields: [id], references: [id], onDelete: Cascade)
   username    String
 }
 
@@ -30,7 +30,7 @@ model Education {
   degree   String
   from     Json
   to       Json
-  Resume   Resume @relation(fields: [username], references: [username], onDelete: Cascade)
+  Resume   Resume @relation(fields: [id], references: [id], onDelete: Cascade)
   username String
 }
 
@@ -38,7 +38,7 @@ model SkillSection {
   id       Int    @id @default(autoincrement())
   title    String
   skills   Json
-  Resume   Resume @relation(fields: [username], references: [username], onDelete: Cascade)
+  Resume   Resume @relation(fields: [id], references: [id], onDelete: Cascade)
   username String
 }
 
@@ -49,20 +49,41 @@ model Project {
   url          String
   technologies Json
   screenshots  Json
-  Resume       Resume @relation(fields: [username], references: [username], onDelete: Cascade)
+  Resume       Resume @relation(fields: [id], references: [id], onDelete: Cascade)
   username     String
 }
 
 model Resume {
-  username    String         @id @unique
+  id          Int            @id @default(autoincrement())
+  username    String
+  title       String
   profile     Json
   experiences Experience[]
   educations  Education[]
   skills      SkillSection[]
   projects    Project[]
+  User        User           @relation(fields: [username], references: [username], onDelete: Cascade)
+}
+
+model Challenge {
+  id          Int          @id @default(autoincrement())
+  title       String
+  description String
+  codeBlocks  CodeBlocks[]
 }
 
 model CodeBlocks {
-  username String @id @unique
-  code     String
+  id          Int        @id @default(autoincrement())
+  username    String
+  code        String
+  Challenge   Challenge? @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  challengeId Int
+  User        User       @relation(fields: [username], references: [username], onDelete: Cascade)
+}
+
+model User {
+  username   String       @id @unique
+  email      String       @unique
+  resumes    Resume[]
+  codeBlocks CodeBlocks[]
 }

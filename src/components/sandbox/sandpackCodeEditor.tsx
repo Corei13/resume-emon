@@ -1,10 +1,13 @@
 import { SandpackCodeEditor } from "@codesandbox/sandpack-react";
 import { useSandpack } from "@codesandbox/sandpack-react";
 import { ApiRoutes } from "@src/utils/routes";
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useRef } from "react";
 
 export const SandpackEditor = () => {
   const { sandpack } = useSandpack();
+  const router = useRouter();
+  const { username, sandbox } = router.query;
   const { files, activeFile } = sandpack;
   const code = files[activeFile].code;
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -19,13 +22,13 @@ export const SandpackEditor = () => {
         body: JSON.stringify({
           codeBlocks: {
             code,
-            username: "test",
+            username,
+            challengeId: sandbox,
           },
-          username: "test",
         }),
       });
     } catch (e) {}
-  }, [code]);
+  }, [code, sandbox, username]);
 
   useEffect(() => {
     const controller = new AbortController();

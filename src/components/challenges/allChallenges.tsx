@@ -13,6 +13,7 @@ export const AllChallenges = () => {
         </Typography>
         <XStack wrap={true}>
           <ChallengeCard
+            id="1"
             thumbnailImagePath="codeCubeThumbnail.png"
             date="Nov 20, 2022"
             title="Code Cube"
@@ -39,6 +40,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="2"
             thumbnailImagePath="heroHeaderThumbnail.png"
             date="Oct 31, 2022"
             title="Hero header"
@@ -60,6 +62,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="3"
             thumbnailImagePath="prototypeThumbnail.png"
             date="Oct 31, 2022"
             title="Prototype"
@@ -81,6 +84,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="4"
             thumbnailImagePath="prototypeThumbnail2.png"
             date="Oct 31, 2022"
             title="Prototype"
@@ -97,6 +101,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="5"
             thumbnailImagePath="codeCubeThumbnail2.png"
             date="Nov 20, 2022"
             title="Code Cube"
@@ -113,6 +118,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="6"
             thumbnailImagePath="heroHeaderThumbnail2.png"
             date="Oct 31, 2022"
             title="Hero header"
