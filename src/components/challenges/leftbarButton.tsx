@@ -24,16 +24,17 @@ export const NavButton = (props: TNavButton) => {
   const leftMargin = props.isSelected ? "17px" : "20px";
 
   return (
-    <XStack css={{ width: "100%", alignItems: "center" }}>
+    <XStack alignItems="center" css={{ width: "100%" }}>
       {props.isSelected && <Selected />}
       <XStack
-        css={{ gap: "$10", marginLeft: leftMargin, alignItems: "center" }}
+        space={"$10"}
+        css={{ marginLeft: leftMargin, alignItems: "center" }}
       >
         {props.icon}
         <Typography
           variant="sm"
           color={`${
-            props.isSelected ? theme.colors.violet : theme.colors.gray500
+            props.isSelected ? theme.colors.blue900 : theme.colors.gray500
           }`}
         >
           {props.label}

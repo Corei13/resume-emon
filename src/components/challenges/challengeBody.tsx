@@ -27,45 +27,47 @@ export const ChallengeBody = () => {
 
   const startTestButton = (
     <ModalBody body={<TaskModalContent />}>
-      <Button type={"violet"} css={{ width: "$space$128" }}>
+      <Button type={"blue900"} css={{ width: "$space$128" }}>
         Start Test
       </Button>
     </ModalBody>
   );
 
   return (
-    <YStack css={{ width: "100%", paddingBottom: "$60" }}>
+    <YStack padding={"0 0 $space$60 0"} css={{ width: "100%" }}>
       <XStack
+        alignItems="center"
         css={{
           width: "100%",
           height: "$space$96",
-          alignItems: "center",
           backgroundColor: "$white",
-          boxShadow: `${scroll ? "29px 16px 29px 0px #00000014" : ""}`,
+          boxShadow: `${
+            scroll ? "$space$28 $space$16 $space$28 0 $colors$gray200" : ""
+          }`,
         }}
         sticky={true}
       >
-        <ChallengesNav actionButton={startTestButton} />
+        <ChallengesNav navTitle="Code Cube" actionButton={startTestButton} />
       </XStack>
-      <YStack css={{ paddingX: "$40", paddingTop: "$40" }}>
+      <YStack padding={"$space$40 $space$40 0"}>
         <CodeCube components={components} />
-        <XStack css={{ paddingTop: "$52" }}>
+        <XStack padding={"$space$52 0 0 0"}>
           <Typography
             variant="lg"
-            color="$violet"
+            color="$blue900"
             css={{ fontWeight: "bold", margin: "auto" }}
           >
             Ready to make it happen ?
           </Typography>
         </XStack>
-        <XStack css={{ width: "100%", paddingTop: "$16" }}>
+        <XStack padding={"$space$16 0 0 0"} css={{ width: "100%" }}>
           <ModalBody body={<TaskModalContent />}>
             <Button
               type={"white"}
               css={{
                 width: "100%",
-                border: "1px solid $violet",
-                color: "$violet",
+                border: "1px solid $blue900",
+                color: "$blue900",
               }}
             >
               Start Test

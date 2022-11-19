@@ -19,9 +19,9 @@ export const SectionTitle = ({
 }: SectionTitlePropType) => {
   return (
     <XStack
+      alignItems="center"
       css={{
         background: expanded && !notExpandable ? "$primary5" : "transparent",
-        alignItems: "center",
         borderRadius: "$space$4",
         padding: "$4",
         cursor: "pointer",

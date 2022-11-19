@@ -34,13 +34,12 @@ export const TopNav = () => {
   return (
     <XStack
       justifyContent="space-between"
+      padding={"$space$8 $space$16"}
       css={{
-        paddingX: "$16",
-        paddingY: "$8",
         borderBottom: "2px solid $gray200",
       }}
     >
-      <XStack css={{ gap: "$8" }}>
+      <XStack space={"$8"}>
         <Icon name="logo" />{" "}
         <Typography
           variant="xs"
@@ -50,11 +49,11 @@ export const TopNav = () => {
           re:sume
         </Typography>
       </XStack>
-      <XStack css={{ gap: "$16" }}>
+      <XStack space={"$16"}>
         <PDF
           callbackFn={(args) => (
             <a href={args.url || ""} download="Resume.pdf">
-              <XStack css={{ gap: "$8", cursor: "pointer" }}>
+              <XStack space={"$8"} css={{ cursor: "pointer" }}>
                 <Icon name="save" css={{ rotate: "180deg" }} />
                 <Typography variant="sm" css={{ alignSelf: "center" }}>
                   Export PDF
@@ -70,7 +69,8 @@ export const TopNav = () => {
           </Typography>
         ) : (
           <XStack
-            css={{ gap: "$8", cursor: "pointer" }}
+            space={"$8"}
+            css={{ cursor: "pointer" }}
             onClick={handleSaveClick}
           >
             <Icon name="save" />

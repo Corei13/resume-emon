@@ -1,14 +1,14 @@
-import { ChallengeBody } from "@src/components/challenges/challengeBody";
-import { XStack } from "@src/components/stack";
 import { HomeLeftBar } from "@src/components/challenges/leftBar";
+import { ResumeBody } from "@src/components/myResumes/resumeBody";
+import { XStack } from "@src/components/stack";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 
-export const Test = () => {
+export const Resumes = () => {
   return (
     <XStack>
       <HomeLeftBar />
-      <ChallengeBody />
+      <ResumeBody />
     </XStack>
   );
 };
@@ -26,4 +26,4 @@ export const getServerSideProps = async (context: NextPageContext) => {
   return { props: {} };
 };
 
-export default Test;
+export default Resumes;

@@ -1,42 +1,42 @@
 import { NavButton } from "@src/components/challenges/leftbarButton";
-import { BackArrow } from "@src/components/icons/backArrow";
-import { Challenges } from "@src/components/icons/challenges";
-import { MyResume } from "@src/components/icons/myResume";
-import { Resume } from "@src/components/icons/resume";
+import { BackArrowIcon } from "@src/components/icons/backArrow";
+import { ChallengesIcon } from "@src/components/icons/challenges";
+import { MyResumeIcon } from "@src/components/icons/myResume";
+import { ResumeIcon } from "@src/components/icons/resume";
 import { XStack, YStack } from "@src/components/stack";
 
-export const LeftBarV2 = () => {
+export const HomeLeftBar = () => {
   return (
     <YStack
       css={{
-        width: "178px",
+        width: "$178",
         height: "100vh",
-        boxShadow: "0px 16px 29px 0px #00000014",
+        boxShadow: "0px $space$16 $space$28 0px $colors$gray200",
         zIndex: 999999,
       }}
       sticky={true}
     >
       <XStack
+        alignItems="center"
+        space={"$20"}
+        padding={"0 $space$20"}
         css={{
           height: "$space$80",
           width: "100%",
-          alignItems: "center",
-          gap: "$20",
-          paddingX: "$20",
-          borderBottom: "1px solid $gray200",
+          borderBottom: "$space$1 solid $gray200",
           marginBottom: "$10",
         }}
       >
-        <Resume /> <BackArrow />
+        <ResumeIcon /> <BackArrowIcon />
       </XStack>
-      <YStack css={{ gap: "$16" }}>
+      <YStack space={"$16"}>
         <NavButton
-          icon={<MyResume isSelected={false} />}
+          icon={<MyResumeIcon isSelected={false} />}
           label="My Resumes"
           isSelected={false}
         />
         <NavButton
-          icon={<Challenges isSelected={true} />}
+          icon={<ChallengesIcon isSelected={true} />}
           label="Challenges"
           isSelected={true}
         />

@@ -7,12 +7,8 @@ export const CanvasNav = () => {
   const [selectedView, setSelectedView] = useAtom(selectedViewAtom);
 
   return (
-    <XStack
-      css={{
-        justifyContent: "center",
-      }}
-    >
-      <XStack css={{ gap: "$8" }}>
+    <XStack justifyContent="center">
+      <XStack space={"$8"}>
         <CanvasNavIcon
           selected={selectedView === "canvas"}
           icon={"monitor"}

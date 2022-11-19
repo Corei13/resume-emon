@@ -4,11 +4,13 @@ import { ChallengesNav } from "@src/components/challenges/nav";
 import { Timer } from "@src/components/challenges/timer";
 import { Editor } from "@src/components/sandbox/editor";
 import { YStack } from "@src/components/stack";
-import databaseController from "@src/controllers/databaseController";
+import { getCodeBlocks } from "@src/controllers/databaseController";
+import { NextPageContext } from "next";
+import { getSession } from "next-auth/react";
 
 const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks }) => {
   const submitButton = (
-    <Button type={"violet"} css={{ width: "$space$134" }}>
+    <Button type={"blue900"} css={{ width: "$space$134" }}>
       Submit Test
     </Button>
   );
@@ -16,6 +18,7 @@ const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks }) => {
   return (
     <YStack>
       <ChallengesNav
+        navTitle="Code Cube"
         showCountdown={<Timer />}
         actionButton={submitButton}
         showBackButton={true}
@@ -28,9 +31,18 @@ const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks }) => {
 
 export default SandBox;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context: NextPageContext) => {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+      },
+    };
+  }
+
   const username = "test";
-  const codeBlocks = await databaseController.getCodeBlocks(username);
+  const codeBlocks = await getCodeBlocks(username);
 
   return { props: { codeBlocks } };
 };

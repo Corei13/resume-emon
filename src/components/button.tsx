@@ -1,15 +1,15 @@
 import { styled } from "@stitches/react";
 
 export const Button = styled("button", {
-  borderRadius: "6px",
+  borderRadius: "$space$6",
   height: "$space$40",
   alignItems: "center",
   cursor: "pointer",
   variants: {
     type: {
-      violet: {
+      blue900: {
         margin: "auto",
-        backgroundColor: "$violet",
+        backgroundColor: "$blue900",
         color: "$white",
         border: "0",
       },
@@ -17,7 +17,7 @@ export const Button = styled("button", {
         margin: "auto",
         backgroundColor: "$white",
         color: "$gray500",
-        border: "1px solid $gray300",
+        border: "$space$1 solid $gray300",
       },
       miniActive: {
         height: "$space$48",

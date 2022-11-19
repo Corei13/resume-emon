@@ -70,14 +70,15 @@ export const ItemTitle = ({
 
   return (
     <XStack
+      justifyContent="space-between"
+      alignItems="center"
       css={{
-        alignItems: "center",
         cursor: "pointer",
         paddingLeft: `$${level * 16 + 8}`,
         paddingRight: "$8",
         borderRadius: "$space$4",
         "&:hover": {
-          boxShadow: "0 0 0 1px $colors$primary5",
+          boxShadow: "0 0 0 $space$1 $colors$primary5",
           ".modifiers": {
             visibility: "visible",
           },
@@ -85,12 +86,12 @@ export const ItemTitle = ({
         ".modifiers": {
           visibility: "hidden",
         },
-        justifyContent: "space-between",
       }}
     >
       <XStack
+        alignItems="center"
         onClick={onClickHandler}
-        css={{ flexGrow: 1, paddingY: "$6", alignItems: "center" }}
+        css={{ flexGrow: 1, paddingY: "$6" }}
       >
         {expandable ? (
           <XStack css={{ paddingRight: "$4" }}>

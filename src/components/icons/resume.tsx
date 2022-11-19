@@ -1,4 +1,4 @@
-export const Resume = () => {
+export const ResumeIcon = () => {
   return (
     <svg
       width="99"

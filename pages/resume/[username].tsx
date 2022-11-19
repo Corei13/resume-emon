@@ -5,7 +5,6 @@ import { LeftBar } from "@src/components/leftbar/leftbar";
 import { RightBar } from "@src/components/rightbar/rightbar";
 import { NextPageContext } from "next";
 import { Resume } from "@src/types";
-import databaseController from "@src/controllers/databaseController";
 import Head from "next/head";
 import { Atom } from "jotai";
 import {
@@ -19,6 +18,8 @@ import { useHydrateAtoms } from "jotai/utils";
 import { usernameAtom } from "@src/atoms/username";
 import { DefaultData } from "@src/utils/defaults";
 import { MainView } from "@src/components/mainView";
+import { getSession } from "next-auth/react";
+import { getResume } from "@src/controllers/databaseController";
 
 export default function ResumePage({
   resume,
@@ -64,7 +65,16 @@ export default function ResumePage({
 
 export async function getServerSideProps(context: NextPageContext) {
   const { username } = context.query;
-  const resume = await databaseController.getResume(username as string);
+  const resume = await getResume(username as string);
+
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+      },
+    };
+  }
 
   return { props: { resume, username } };
 }
