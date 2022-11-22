@@ -15,8 +15,6 @@ const SandBox = ({ codeBlocks }: { codeBlocks: CodeBlocks | null }) => {
     </Button>
   );
 
-  console.log("sandbox", codeBlocks);
-
   return (
     <YStack>
       <ChallengesNav

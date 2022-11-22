@@ -100,20 +100,30 @@ export const getCodeBlocks = async (
 };
 
 export const saveUser = async (username: string, email: string) => {
-  await client?.user.create({
-    data: {
-      username,
-      email,
-    },
+  const existedUser = await client.user.findFirst({
+    where: { username },
   });
+
+  if (!existedUser) {
+    const user = await client?.user.create({
+      data: {
+        username,
+        email,
+      },
+    });
+
+    return user;
+  }
 };
 
-export const getUser = async (username: string) => {
+export const getUser = async (email: string) => {
   const user = await client?.user.findUnique({
-    where: { username },
+    where: { email },
   });
 
   if (!user) {
     return null;
   }
+
+  return user;
 };

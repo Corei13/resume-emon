@@ -3,4 +3,5 @@ export const ApiRoutes = {
   getResume: (username: string) => `${ApiRoutes.root}/resume/${username}`,
   saveResume: () => `${ApiRoutes.root}/save-resume`,
   saveCodeBlocks: () => `${ApiRoutes.root}/challenge/test`,
+  username: () => `${ApiRoutes.root}/user/username`,
 };

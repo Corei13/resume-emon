@@ -12,8 +12,6 @@ export const TaskModalContent = () => {
   const { challengeId } = router.query;
   const [username] = useAtom(usernameAtom);
 
-  console.log(challengeId, username);
-
   return (
     <YStack css={{ width: "520px" }}>
       <XStack alignItems="center" css={{ width: "100%", marginBottom: "$24" }}>
