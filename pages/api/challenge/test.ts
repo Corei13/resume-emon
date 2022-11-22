@@ -14,6 +14,7 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     const { codeBlocks }: RequestBodyType = req.body;
+
     await saveCodeBlocks(codeBlocks);
     res.status(200).json({ message: "Successfully saved!" });
   } else {

@@ -7,7 +7,6 @@ import { Typography } from "@src/components/typography";
 import React, { useEffect, useState } from "react";
 import CodeCube from "@src/mdx/codeCube.mdx";
 import { MDXh1, MDXText } from "@src/components/mdxElements";
-import { useRouter } from "next/router";
 
 export const components = {
   p: MDXText,
@@ -16,7 +15,6 @@ export const components = {
 
 export const ChallengeBody = () => {
   const [scroll, setScroll] = useState(false);
-  const router = useRouter();
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScroll(window.scrollY > 10);

@@ -24,7 +24,11 @@ export const NavButton = (props: TNavButton) => {
   const leftMargin = props.isSelected ? "17px" : "20px";
 
   return (
-    <XStack alignItems="center" css={{ width: "100%" }}>
+    <XStack
+      alignItems="center"
+      css={{ width: "100%", cursor: "pointer" }}
+      onClick={() => props.onClick()}
+    >
       {props.isSelected && <Selected />}
       <XStack
         space={"$10"}

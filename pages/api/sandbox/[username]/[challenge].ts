@@ -7,12 +7,13 @@ export default async function handler(
   res: NextApiResponse<CodeBlocks | { message: string } | null>
 ) {
   if (req.method === "GET") {
-    const { username, challengeId } = req.query;
+    const { username, challenge } = req.query;
 
     const codeBlocks = await getCodeBlocks(
       username as string,
-      Number(challengeId)
+      Number(challenge)
     );
-    res.status(200).json(codeBlocks);
+
+    return res.status(200).json(codeBlocks);
   }
 }

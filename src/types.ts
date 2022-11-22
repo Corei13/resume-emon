@@ -112,6 +112,7 @@ export type TNavButton = {
   icon: React.ReactNode;
   label: string;
   isSelected: Boolean;
+  onClick: () => void;
 };
 
 export type SectionTypes =

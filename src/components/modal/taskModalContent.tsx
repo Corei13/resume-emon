@@ -64,7 +64,7 @@ export const TaskModalContent = () => {
         >
           Go back
         </Button>
-        <Link href={`/challenge/${username}/${challengeId}`}>
+        <Link href={`/challenge/${challengeId}`}>
           <Button
             type={"blue900"}
             css={{ width: "$space$252", height: "$space$48" }}

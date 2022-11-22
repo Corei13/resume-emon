@@ -7,27 +7,34 @@ import { useCallback, useEffect, useRef } from "react";
 export const SandpackEditor = () => {
   const { sandpack } = useSandpack();
   const router = useRouter();
-  const { username, sandbox } = router.query;
+  const { sandbox } = router.query;
   const { files, activeFile } = sandpack;
   const code = files[activeFile].code;
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  let username = "";
+
+  if (typeof window !== "undefined") {
+    username = localStorage.getItem("userName") || "";
+  }
 
   const saveCode = useCallback(() => {
-    try {
-      fetch(ApiRoutes.saveCodeBlocks(), {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          codeBlocks: {
-            code,
-            username,
-            challengeId: sandbox,
+    if (username) {
+      try {
+        fetch(ApiRoutes.saveCodeBlocks(), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        }),
-      });
-    } catch (e) {}
+          body: JSON.stringify({
+            codeBlocks: {
+              code,
+              username,
+              challengeId: sandbox,
+            },
+          }),
+        });
+      } catch (e) {}
+    }
   }, [code, sandbox, username]);
 
   useEffect(() => {
