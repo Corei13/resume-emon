@@ -76,6 +76,7 @@ const resumeGetter = (get: Getter) => {
   const resume: Resume = {
     username: "",
     title: "",
+    createdAt: "",
     profile,
     experiences,
     educations,

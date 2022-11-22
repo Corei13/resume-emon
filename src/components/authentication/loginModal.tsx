@@ -10,7 +10,7 @@ import { Session } from "next-auth";
 import { useRouter } from "next/router";
 import React from "react";
 
-export const UserNameInput = styled("input", {
+const UserNameInput = styled("input", {
   height: "2.75rem",
   width: "20.125rem",
   border: "1px solid $colors$gray200",

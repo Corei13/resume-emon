@@ -102,6 +102,7 @@ export const DefaultData = {
     return {
       username,
       title,
+      createdAt: new Date(Date.now()),
       profile: DefaultData.profile(),
       experiences: [DefaultData.experience(username)],
       projects: [DefaultData.project(username)],

@@ -1,21 +1,28 @@
 import { Button } from "@src/components/button";
 import { ChallengesNav } from "@src/components/challenges/nav";
 import { SearchIcon } from "@src/components/icons/search";
+import { ModalBody } from "@src/components/modal/modalBody";
+import { SetResumeTitle } from "@src/components/modal/setResumeTitle";
 import { ResumeCard } from "@src/components/myResumes/resumeCard";
 import { XStack, YStack } from "@src/components/stack";
 import { styled } from "@src/stitches.config";
+import { TAllResumes } from "@src/types";
+import { ApiRoutes } from "@src/utils/routes";
+import { useEffect, useState } from "react";
 
 const createResumeButton = (
-  <Button
-    type={"white"}
-    css={{
-      width: "$space$160",
-      border: "$space$1 solid $blue900",
-      color: "$blue900",
-    }}
-  >
-    Create a Resume
-  </Button>
+  <ModalBody body={<SetResumeTitle />}>
+    <Button
+      type={"white"}
+      css={{
+        width: "$space$160",
+        border: "$space$1 solid $blue900",
+        color: "$blue900",
+      }}
+    >
+      Create a Resume
+    </Button>
+  </ModalBody>
 );
 
 export const BorderLessInput = styled("input", {
@@ -44,6 +51,34 @@ const SearchInput = (
 );
 
 export const ResumeBody = () => {
+  const [resumes, setResumes] = useState<TAllResumes[]>();
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const fetchAllResumes = async () => {
+      await fetch(ApiRoutes.getAllResumes(localStorage.getItem("userName")!), {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const resumes = data.resumes.map((resume: TAllResumes) => {
+            return {
+              id: resume.id,
+              title: resume.title,
+              createdAt: resume.createdAt,
+            };
+          });
+          setResumes(resumes);
+        });
+    };
+    fetchAllResumes();
+
+    return () => controller.abort();
+  }, []);
+
   return (
     <YStack css={{ width: "100%" }}>
       <ChallengesNav
@@ -52,9 +87,14 @@ export const ResumeBody = () => {
         searchInput={SearchInput}
         noBorder={true}
       />
-      <ResumeCard resumeTitle="Product Design" date="20 Nov, 2022" />
-      <ResumeCard resumeTitle="Re:criut" date="20 Nov, 2022" />
-      <ResumeCard resumeTitle="Affine" date="20 Nov, 2022" />
+      {resumes?.map((resume) => (
+        <ResumeCard
+          key={resume.id}
+          id={resume.id}
+          resumeTitle={resume.title}
+          date={resume.createdAt}
+        />
+      ))}
     </YStack>
   );
 };

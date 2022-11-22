@@ -58,6 +58,7 @@ model Resume {
   username    String
   title       String
   profile     Json
+  createdAt   String
   experiences Experience[]
   educations  Education[]
   skills      SkillSection[]

@@ -1,15 +1,21 @@
 import { PrismaClient } from "@prisma/client";
 import { CodeBlocks, Resume } from "@src/types";
+import { DefaultData } from "@src/utils/defaults";
 
 const client = new PrismaClient();
 
 export const saveResume = async (id: string, resume: Resume) => {
-  await client?.resume.delete({ where: { id: Number(id) } });
+  console.log("save resume", id, resume);
+  // await client?.resume.delete({ where: { id: Number(id) } });
 
-  await client?.resume.create({
+  await client?.resume.update({
+    where: {
+      id: Number(id),
+    },
     data: {
       username: resume.username,
       title: resume.title,
+      createdAt: new Date(Date.now()).toDateString(),
       profile: resume.profile,
       educations: {
         createMany: {
@@ -37,6 +43,54 @@ export const saveResume = async (id: string, resume: Resume) => {
   });
 };
 
+export const createEmptyResume = async (title: string, username: string) => {
+  const User = await client.user.findUnique({
+    where: { username },
+  });
+  if (User) {
+    const resume = await client?.resume.create({
+      data: {
+        username,
+        title,
+        createdAt: new Date(Date.now()).toDateString(),
+        profile: DefaultData.profile(),
+        educations: {
+          createMany: {
+            data: [DefaultData.education(username)].map(
+              ({ id: _, ...education }) => education
+            ),
+          },
+        },
+        experiences: {
+          createMany: {
+            data: [DefaultData.experience(username)].map(
+              ({ id: _, ...experience }) => experience
+            ),
+          },
+        },
+        projects: {
+          createMany: {
+            data: [DefaultData.project(username)].map(
+              ({ id: _, ...project }) => project
+            ),
+          },
+        },
+        skills: {
+          createMany: {
+            data: [DefaultData.skillSection(username)].map(
+              ({ id: _, ...skill }) => skill
+            ),
+          },
+        },
+      },
+    });
+
+    return resume.id;
+  }
+
+  return null;
+};
+
 export const getResume = async (id: string): Promise<Resume | null> => {
   const resume = await client?.resume.findUnique({
     where: { id: Number(id) },
@@ -53,6 +107,21 @@ export const getResume = async (id: string): Promise<Resume | null> => {
   }
 
   return resume as unknown as Resume;
+};
+
+export const getAllResumes = async (username: string) => {
+  console.log("resumes", username);
+  const resumes = await client.resume.findMany({
+    where: {
+      username,
+    },
+  });
+  console.log("resumes ans", resumes);
+  if (resumes) {
+    return { resumes };
+  } else {
+    return null;
+  }
 };
 
 export const saveCodeBlocks = async (codeblocks: CodeBlocks) => {

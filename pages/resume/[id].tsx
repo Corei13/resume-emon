@@ -21,13 +21,11 @@ import { MainView } from "@src/components/mainView";
 import { getSession } from "next-auth/react";
 import { getResume } from "@src/controllers/databaseController";
 
-export default function ResumePage({
-  resume,
-  username,
-}: {
-  resume: Resume | null;
-  username: string;
-}) {
+export default function ResumePage({ resume }: { resume: Resume | null }) {
+  let username = "";
+  if (typeof window !== "undefined") {
+    username = localStorage.getItem("userName") || "";
+  }
   useHydrateAtoms([
     [usernameAtom, username],
     [profileAtom, resume?.profile || DefaultData.profile],
@@ -67,8 +65,8 @@ export default function ResumePage({
 }
 
 export async function getServerSideProps(context: NextPageContext) {
-  const { username } = context.query;
-  const resume = await getResume(username as string);
+  const { id } = context.query;
+  const resume = await getResume(id as string);
 
   const session = await getSession(context);
   if (!session) {
@@ -79,5 +77,5 @@ export async function getServerSideProps(context: NextPageContext) {
     };
   }
 
-  return { props: { resume, username } };
+  return { props: { resume, id } };
 }

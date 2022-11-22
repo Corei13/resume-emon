@@ -84,6 +84,7 @@ export type Resume = {
   username: string;
   title: string;
   profile: Profile;
+  createdAt: Date | string;
   experiences: Experience[];
   projects: Project[];
   educations: Education[];
@@ -113,6 +114,12 @@ export type TNavButton = {
   label: string;
   isSelected: Boolean;
   onClick: () => void;
+};
+
+export type TAllResumes = {
+  id: string;
+  title: string;
+  createdAt: string;
 };
 
 export type SectionTypes =

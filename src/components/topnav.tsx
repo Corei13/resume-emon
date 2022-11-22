@@ -3,19 +3,23 @@ import { Typography } from "@src/components/typography";
 import { Icon } from "@src/components/icon";
 import { useCallback, useState } from "react";
 import dynamic from "next/dynamic";
-import { useAtomValue } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { ApiRoutes } from "@src/utils/routes";
-import { usernameAtom } from "@src/atoms/username";
 import { resumeAtom } from "@src/atoms/resume";
+import { useRouter } from "next/router";
+import { selectedViewAtom } from "@src/atoms/selectedView";
 
 const PDF = dynamic(() => import("@src/components/pdf/pdf"), {
   ssr: false,
 });
 
 export const TopNav = () => {
-  const username = useAtomValue(usernameAtom);
   const resume = useAtomValue(resumeAtom);
+  const [, setResume] = useAtom(resumeAtom);
+  const [, setSelectedViewAtom] = useAtom(selectedViewAtom);
   const [loading, saveLoading] = useState(false);
+  const router = useRouter();
+  const { id } = router.query;
 
   const handleSaveClick = useCallback(async () => {
     saveLoading(true);
@@ -25,11 +29,11 @@ export const TopNav = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ resume, username }),
-      });
+        body: JSON.stringify({ id, resume }),
+      }).then(() => setSelectedViewAtom("canvas"));
     } catch (e) {}
     saveLoading(false);
-  }, [resume, username]);
+  }, [resume, id, setSelectedViewAtom]);
 
   return (
     <XStack
