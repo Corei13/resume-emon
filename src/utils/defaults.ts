@@ -12,9 +12,10 @@ import {
 } from "@src/types";
 
 export const DefaultData = {
-  experience(username: string): Experience {
+  experience(username: string, resumeId:number): Experience {
     return {
       username,
+      resumeId,
       id: Math.floor(Math.random() * 100000),
       company: "Add Company",
       position: "Add Position",
@@ -32,9 +33,10 @@ export const DefaultData = {
     };
   },
 
-  project(username: string): Project {
+  project(username: string, resumeId: number): Project {
     return {
       username,
+      resumeId,
       id: Math.floor(Math.random() * 100000),
       title: "Add Project Name",
       description: "Add Project Description",
@@ -58,9 +60,10 @@ export const DefaultData = {
     };
   },
 
-  education(username: string): Education {
+  education(username: string, resumeId: number): Education {
     return {
       username,
+      resumeId,
       id: Math.floor(Math.random() * 100000),
       school: "Add School",
       degree: "Add Degree",
@@ -69,9 +72,10 @@ export const DefaultData = {
     };
   },
 
-  skillSection(username: string): SkillSection {
+  skillSection(username: string, resumeId: number): SkillSection {
     return {
       username,
+      resumeId,
       id: Math.floor(Math.random() * 100000),
       title: "Add Skill Section Title",
       skills: [DefaultData.skill()],
@@ -98,16 +102,16 @@ export const DefaultData = {
     };
   },
 
-  resume(username: string, title: string): Resume {
+  resume(username: string, title: string, resumeId: number): Resume {
     return {
       username,
       title,
       createdAt: new Date(Date.now()),
       profile: DefaultData.profile(),
-      experiences: [DefaultData.experience(username)],
-      projects: [DefaultData.project(username)],
-      educations: [DefaultData.education(username)],
-      skills: [DefaultData.skillSection(username)],
+      experiences: [DefaultData.experience(username, resumeId)],
+      projects: [DefaultData.project(username, resumeId)],
+      educations: [DefaultData.education(username, resumeId)],
+      skills: [DefaultData.skillSection(username, resumeId)],
     };
   },
 };

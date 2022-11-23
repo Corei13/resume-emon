@@ -5,6 +5,7 @@ import { XStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 import { SectionTypes } from "@src/types";
 import { useAtomValue, useSetAtom } from "jotai";
+import { useRouter } from "next/router";
 import { useCallback } from "react";
 
 type ItemTitlePropType = {
@@ -37,12 +38,14 @@ export const ItemTitle = ({
   const sectionAtom = getSectionAtom(section || "none");
   const username = useAtomValue(usernameAtom);
   const dispatcher = useSetAtom(sectionAtom);
+  const router = useRouter()
+  const {id} = router.query
 
   const onAdd = useCallback(() => {
     dispatcher?.({
       type: "add",
       subsection,
-      payload: { index, username },
+      payload: { index, username, resumeId:Number(id) },
     });
   }, [dispatcher, index, subsection, username]);
 
@@ -50,7 +53,7 @@ export const ItemTitle = ({
     dispatcher?.({
       type: "up",
       subsection,
-      payload: { index, username },
+      payload: { index, username, resumeId:Number(id)  },
     });
   }, [dispatcher, index, subsection, username]);
 
@@ -58,7 +61,7 @@ export const ItemTitle = ({
     dispatcher?.({
       type: "down",
       subsection,
-      payload: { index, username },
+      payload: { index, username, resumeId:Number(id)  },
     });
   }, [dispatcher, index, subsection, username]);
 
@@ -66,7 +69,7 @@ export const ItemTitle = ({
     dispatcher?.({
       type: "remove",
       subsection,
-      payload: { index, username },
+      payload: { index, username, resumeId:Number(id)  },
     });
   }, [dispatcher, index, subsection, username]);
 

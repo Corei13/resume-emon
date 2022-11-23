@@ -17,7 +17,7 @@ export const educationReducer = (
         educations.splice(
           payload.index[0] + 1,
           0,
-          DefaultData.education(payload.username)
+          DefaultData.education(payload.username, payload.resumeId)
         );
       }
       break;

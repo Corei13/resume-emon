@@ -20,22 +20,30 @@ import { DefaultData } from "@src/utils/defaults";
 import { MainView } from "@src/components/mainView";
 import { getSession } from "next-auth/react";
 import { getResume } from "@src/controllers/databaseController";
+import { titleAtom } from "@src/atoms/title";
+import { createdAtAtom } from "@src/atoms/createdAt";
+import { useRouter } from "next/router";
 
 export default function ResumePage({ resume }: { resume: Resume | null }) {
+  const router = useRouter()
+  const {id} = router.query
   let username = "";
   if (typeof window !== "undefined") {
     username = localStorage.getItem("userName") || "";
   }
+  console.log(resume)
   useHydrateAtoms([
     [usernameAtom, username],
+    [titleAtom, resume?.title],
+    [createdAtAtom, resume?.createdAt],
     [profileAtom, resume?.profile || DefaultData.profile],
     [
       experiencesAtom,
-      resume?.experiences || [DefaultData.experience(username)],
+      resume?.experiences || [DefaultData.experience(username, Number(id))],
     ],
-    [educationsAtom, resume?.educations || [DefaultData.education(username)]],
-    [projectsAtom, resume?.projects || [DefaultData.project(username)]],
-    [skillSectionAtom, resume?.skills || [DefaultData.skillSection(username)]],
+    [educationsAtom, resume?.educations || [DefaultData.education(username, Number(id))]],
+    [projectsAtom, resume?.projects || [DefaultData.project(username, Number(id))]],
+    [skillSectionAtom, resume?.skills || [DefaultData.skillSection(username, Number(id))]],
   ] as unknown as Iterable<readonly [Atom<unknown>, unknown]>);
 
   return (

@@ -14,42 +14,46 @@ datasource db {
 
 model Experience {
   id          Int    @id @default(autoincrement())
+  resumeId    Int
   position    String
   company     String
   description Json
   from        Json
   to          Json
   location    String
-  Resume      Resume @relation(fields: [id], references: [id], onDelete: Cascade)
+  Resume      Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   username    String
 }
 
 model Education {
   id       Int    @id @default(autoincrement())
+  resumeId Int
   school   String
   degree   String
   from     Json
   to       Json
-  Resume   Resume @relation(fields: [id], references: [id], onDelete: Cascade)
+  Resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   username String
 }
 
 model SkillSection {
   id       Int    @id @default(autoincrement())
+  resumeId Int
   title    String
   skills   Json
-  Resume   Resume @relation(fields: [id], references: [id], onDelete: Cascade)
+  Resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   username String
 }
 
 model Project {
   id           Int    @id @default(autoincrement())
+  resumeId     Int
   title        String
   description  String
   url          String
   technologies Json
   screenshots  Json
-  Resume       Resume @relation(fields: [id], references: [id], onDelete: Cascade)
+  Resume       Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   username     String
 }
 

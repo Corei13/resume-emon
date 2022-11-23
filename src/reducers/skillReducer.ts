@@ -26,7 +26,7 @@ export const skillSectionReducer = (
         skills.splice(
           payload.index[0] + 1,
           0,
-          DefaultData.skillSection(payload.username)
+          DefaultData.skillSection(payload.username, payload.resumeId)
         );
       }
       break;

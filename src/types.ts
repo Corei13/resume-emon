@@ -18,6 +18,7 @@ export type Description = {
 export type Experience = {
   username: string;
   id: number;
+  resumeId: number;
   position: string;
   company: string;
   from: {
@@ -35,6 +36,7 @@ export type Experience = {
 export type Education = {
   username: string;
   id: number;
+  resumeId: number;
   school: string;
   degree: string;
   from: {
@@ -53,6 +55,7 @@ export type Skill = {
 };
 
 export type SkillSection = {
+  resumeId: number;
   id: number;
   title: string;
   skills: Skill[];
@@ -71,6 +74,7 @@ export type Screenshot = {
 
 export type Project = {
   id: number;
+  resumeId: number;
   username: string;
   title: string;
   url: string;
@@ -142,6 +146,7 @@ export type SectionActionType = {
     index?: number[];
     value?: unknown;
     username: string;
+    resumeId: number
   };
 };
 

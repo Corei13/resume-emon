@@ -35,7 +35,7 @@ export const projectsReducer = (
         projects.splice(
           payload.index[0] + 1,
           0,
-          DefaultData.project(payload.username)
+          DefaultData.project(payload.username, payload.resumeId)
         );
       }
       break;

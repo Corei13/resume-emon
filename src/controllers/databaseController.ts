@@ -5,10 +5,23 @@ import { DefaultData } from "@src/utils/defaults";
 const client = new PrismaClient();
 
 export const saveResume = async (id: string, resume: Resume) => {
-  console.log("save resume", id, resume);
+  console.log("save resume", id, resume.username);
+
+  await client.education.deleteMany({where: {
+    resumeId: Number(id)
+  }})
+  await client.experience.deleteMany({where: {
+    resumeId: Number(id)
+  }})
+  await client.project.deleteMany({where: {
+    resumeId: Number(id)
+  }})
+  await client.skillSection.deleteMany({where: {
+    resumeId: Number(id)
+  }})
   // await client?.resume.delete({ where: { id: Number(id) } });
 
-  await client?.resume.update({
+  const update = await client?.resume.update({
     where: {
       id: Number(id),
     },
@@ -19,28 +32,29 @@ export const saveResume = async (id: string, resume: Resume) => {
       profile: resume.profile,
       educations: {
         createMany: {
-          data: resume.educations.map(({ id: _, ...education }) => education),
+          data: resume.educations.map(({ id, resumeId: _, ...education }) => education),
         },
       },
       experiences: {
         createMany: {
           data: resume.experiences.map(
-            ({ id: _, ...experience }) => experience
+            ({ id, resumeId: _, ...experience }) => experience
           ),
         },
       },
       projects: {
         createMany: {
-          data: resume.projects.map(({ id: _, ...project }) => project),
+          data: resume.projects.map(({ id, resumeId: _, ...project }) => project),
         },
       },
       skills: {
         createMany: {
-          data: resume.skills.map(({ id: _, ...skill }) => skill),
+          data: resume.skills.map(({ id, resumeId: _, ...skill }) => skill),
         },
       },
     },
   });
+  console.log(update, 'dbcont')
 };
 
 export const createEmptyResume = async (title: string, username: string) => {
@@ -48,42 +62,50 @@ export const createEmptyResume = async (title: string, username: string) => {
     where: { username },
   });
   if (User) {
-    const resume = await client?.resume.create({
+    const resumeWithoutSection = await client?.resume.create({
       data: {
         username,
         title,
         createdAt: new Date(Date.now()).toDateString(),
         profile: DefaultData.profile(),
+      },
+    });
+    console.log(resumeWithoutSection)
+    const resume = await client.resume.update({
+      where :{
+        id: resumeWithoutSection.id
+      }, data: {
         educations: {
           createMany: {
-            data: [DefaultData.education(username)].map(
-              ({ id: _, ...education }) => education
+            data: [DefaultData.education(username,resumeWithoutSection.id)].map(
+              ({ id, resumeId: _, ...education }) => education
             ),
           },
         },
         experiences: {
           createMany: {
-            data: [DefaultData.experience(username)].map(
-              ({ id: _, ...experience }) => experience
+            data: [DefaultData.experience(username, resumeWithoutSection.id)].map(
+              ({ id, resumeId: _, ...experience }) => experience
             ),
           },
         },
         projects: {
           createMany: {
-            data: [DefaultData.project(username)].map(
-              ({ id: _, ...project }) => project
+            data: [DefaultData.project(username, resumeWithoutSection.id)].map(
+              ({ id,resumeId: _, ...project }) => project
             ),
           },
         },
         skills: {
           createMany: {
-            data: [DefaultData.skillSection(username)].map(
-              ({ id: _, ...skill }) => skill
+            data: [DefaultData.skillSection(username, resumeWithoutSection.id)].map(
+              ({ id,resumeId: _, ...skill }) => skill
             ),
           },
         },
-      },
-    });
+      }
+    })
+
 
     return resume.id;
   }

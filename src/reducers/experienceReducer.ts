@@ -26,7 +26,7 @@ export const experienceReducer = (
         experiences.splice(
           payload.index[0] + 1,
           0,
-          DefaultData.experience(payload.username)
+          DefaultData.experience(payload.username, payload.resumeId)
         );
       }
       break;
