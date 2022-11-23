@@ -4,7 +4,7 @@ import { WritableDraft } from "immer/dist/internal";
 
 export const projectsReducer = (
   projects: WritableDraft<Project[]>,
-  { type, payload, subsection }: SectionActionType
+  { type, payload, subsection, value }: SectionActionType
 ) => {
   if (subsection === "technology" && payload?.index?.length) {
     technologyReducer(projects[payload.index[0]].technologies, {
@@ -60,6 +60,11 @@ export const projectsReducer = (
         ];
       }
       break;
+    case "set":
+      if(value) {
+        while(projects.length) projects.pop();
+        (value as Project[])?.forEach((item:Project) => projects.push(item))
+      }
   }
 };
 

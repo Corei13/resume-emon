@@ -4,7 +4,7 @@ import { WritableDraft } from "immer/dist/internal";
 
 export const skillSectionReducer = (
   skills: WritableDraft<SkillSection[]>,
-  { type, payload, subsection }: SectionActionType
+  { type, payload, subsection, value }: SectionActionType
 ) => {
   if (subsection === "skill" && payload?.index?.length) {
     skillReducer(skills[payload.index[0]].skills, {
@@ -51,6 +51,11 @@ export const skillSectionReducer = (
         ];
       }
       break;
+    case "set":
+      if(value) {
+        while(skills.length) skills.pop();
+        (value as SkillSection[])?.forEach((item:SkillSection) => skills.push(item))
+      }
   }
 };
 

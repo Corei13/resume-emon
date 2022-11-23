@@ -139,8 +139,9 @@ export type SectionTypes =
   | "none";
 
 export type SectionActionType = {
-  type: "add" | "update" | "remove" | "up" | "down";
+  type: "add" | "update" | "remove" | "up" | "down" | "set";
   subsection?: SectionTypes;
+  value?: Education[] | Profile | Experience[] | Project[] | SkillSection[];
   payload?: {
     field?: string;
     index?: number[];

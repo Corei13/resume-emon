@@ -4,7 +4,7 @@ import { WritableDraft } from "immer/dist/internal";
 
 export const educationReducer = (
   educations: WritableDraft<Education[]>,
-  { type, payload }: SectionActionType
+  { type, payload, value }: SectionActionType
 ) => {
   switch (type) {
     case "update":
@@ -42,5 +42,10 @@ export const educationReducer = (
         ];
       }
       break;
+    case "set":
+      if(value) {
+        while(educations.length) educations.pop();
+        (value as Education[])?.forEach((item:Education) => educations.push(item))
+      }
   }
 };

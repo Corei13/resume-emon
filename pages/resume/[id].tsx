@@ -6,7 +6,7 @@ import { RightBar } from "@src/components/rightbar/rightbar";
 import { NextPageContext } from "next";
 import { Resume } from "@src/types";
 import Head from "next/head";
-import { Atom } from "jotai";
+import { Atom, useSetAtom } from "jotai";
 import {
   profileAtom,
   experiencesAtom,
@@ -16,35 +16,70 @@ import {
 } from "@src/atoms/resume";
 import { useHydrateAtoms } from "jotai/utils";
 import { usernameAtom } from "@src/atoms/username";
-import { DefaultData } from "@src/utils/defaults";
 import { MainView } from "@src/components/mainView";
 import { getSession } from "next-auth/react";
 import { getResume } from "@src/controllers/databaseController";
 import { titleAtom } from "@src/atoms/title";
 import { createdAtAtom } from "@src/atoms/createdAt";
-import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-export default function ResumePage({ resume }: { resume: Resume | null }) {
-  const router = useRouter()
-  const {id} = router.query
+export default function ResumePage({ resume, id }: { resume: Resume | null, id: string }) {
+
   let username = "";
   if (typeof window !== "undefined") {
     username = localStorage.getItem("userName") || "";
   }
-  console.log(resume)
+  const setUserName = useSetAtom(usernameAtom)
+  const setTitleAtom = useSetAtom(titleAtom)
+  const educationsDispatcher = useSetAtom(educationsAtom)
+  const profileDispatcher = useSetAtom(profileAtom)
+  const experienceDispatcher = useSetAtom(experiencesAtom)
+  const projectsDispatcher = useSetAtom(projectsAtom)
+  const skillDispatcher = useSetAtom(skillSectionAtom)
+
   useHydrateAtoms([
     [usernameAtom, username],
     [titleAtom, resume?.title],
     [createdAtAtom, resume?.createdAt],
-    [profileAtom, resume?.profile || DefaultData.profile],
+    [profileAtom, resume?.profile],
     [
       experiencesAtom,
-      resume?.experiences || [DefaultData.experience(username, Number(id))],
+      resume?.experiences ,
     ],
-    [educationsAtom, resume?.educations || [DefaultData.education(username, Number(id))]],
-    [projectsAtom, resume?.projects || [DefaultData.project(username, Number(id))]],
-    [skillSectionAtom, resume?.skills || [DefaultData.skillSection(username, Number(id))]],
+    [educationsAtom, resume?.educations ],
+    [projectsAtom, resume?.projects],
+    [skillSectionAtom, resume?.skills],
   ] as unknown as Iterable<readonly [Atom<unknown>, unknown]>);
+
+  useEffect(()=>{
+    setUserName(username)
+    setTitleAtom(resume?.title!)
+
+    educationsDispatcher({
+      type: "set",
+      value: resume?.educations
+    })
+    profileDispatcher({
+      type: "set",
+      value: resume?.profile
+    })
+    experienceDispatcher({
+      type: "set",
+      value: resume?.experiences
+    })
+    projectsDispatcher({
+      type: "set",
+      value: resume?.projects
+    })
+    skillDispatcher({
+      type: "set",
+      value: resume?.skills
+    })
+
+    return () => {}
+
+  }, [id])
+
 
   return (
     <>

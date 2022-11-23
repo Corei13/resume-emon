@@ -4,7 +4,7 @@ import { WritableDraft } from "immer/dist/internal";
 
 export const experienceReducer = (
   experiences: WritableDraft<Experience[]>,
-  { type, payload, subsection }: SectionActionType
+  { type, payload, subsection, value }: SectionActionType
 ) => {
   if (subsection === "description" && payload?.index?.length) {
     descriptionReducer(experiences[payload.index[0]].description, {
@@ -51,6 +51,11 @@ export const experienceReducer = (
         ];
       }
       break;
+    case "set":
+      if(value) {
+        while(experiences.length) experiences.pop();
+        (value as Experience[])?.forEach((item:Experience) => experiences.push(item))
+      }
   }
 };
 

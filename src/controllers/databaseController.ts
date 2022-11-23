@@ -5,7 +5,6 @@ import { DefaultData } from "@src/utils/defaults";
 const client = new PrismaClient();
 
 export const saveResume = async (id: string, resume: Resume) => {
-  console.log("save resume", id, resume.username);
 
   await client.education.deleteMany({where: {
     resumeId: Number(id)
@@ -19,8 +18,6 @@ export const saveResume = async (id: string, resume: Resume) => {
   await client.skillSection.deleteMany({where: {
     resumeId: Number(id)
   }})
-  // await client?.resume.delete({ where: { id: Number(id) } });
-
   const update = await client?.resume.update({
     where: {
       id: Number(id),
@@ -54,7 +51,8 @@ export const saveResume = async (id: string, resume: Resume) => {
       },
     },
   });
-  console.log(update, 'dbcont')
+
+  return update
 };
 
 export const createEmptyResume = async (title: string, username: string) => {
@@ -70,7 +68,6 @@ export const createEmptyResume = async (title: string, username: string) => {
         profile: DefaultData.profile(),
       },
     });
-    console.log(resumeWithoutSection)
     const resume = await client.resume.update({
       where :{
         id: resumeWithoutSection.id
@@ -132,13 +129,11 @@ export const getResume = async (id: string): Promise<Resume | null> => {
 };
 
 export const getAllResumes = async (username: string) => {
-  console.log("resumes", username);
   const resumes = await client.resume.findMany({
     where: {
       username,
     },
   });
-  console.log("resumes ans", resumes);
   if (resumes) {
     return { resumes };
   } else {
