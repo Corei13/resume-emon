@@ -6,6 +6,7 @@ import React from "react";
 import { BackButtonIcon } from "@src/components/icons/backButton";
 import { useRouter } from "next/router";
 import { MonthShortNames } from "@src/utils/constants";
+import { useSession } from "next-auth/react";
 
 export const ChallengesNav = ({
   navTitle,
@@ -30,6 +31,7 @@ export const ChallengesNav = ({
   } ${date.getDate()}, ${date.getFullYear()}`;
 
   const router = useRouter();
+  const { data: session } = useSession();
 
   return (
     <XStack
@@ -110,12 +112,21 @@ export const ChallengesNav = ({
             width: "$32",
           }}
         >
-          <Image
-            src="/assets/icons/staticProfilePicture.png"
-            alt="profile picture"
-            height="32px"
-            width="32px"
-          ></Image>
+          {session?.user?.image ? (
+            <Image
+              src={session.user.image}
+              alt="profile picture"
+              height="32px"
+              width="32px"
+            ></Image>
+          ) : (
+            <Image
+              src="/assets/icons/staticProfilePicture.png"
+              alt="profile picture"
+              height="32px"
+              width="32px"
+            ></Image>
+          )}
         </XStack>
       </XStack>
     </XStack>
