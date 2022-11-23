@@ -22,6 +22,8 @@ import { getResume } from "@src/controllers/databaseController";
 import { titleAtom } from "@src/atoms/title";
 import { createdAtAtom } from "@src/atoms/createdAt";
 import { useEffect } from "react";
+import { selectedViewAtom } from "@src/atoms/selectedView";
+import { selectedItemNameAtom } from "@src/atoms/selectedItem";
 
 export default function ResumePage({ resume, id }: { resume: Resume | null, id: string }) {
 
@@ -31,6 +33,9 @@ export default function ResumePage({ resume, id }: { resume: Resume | null, id: 
   }
   const setUserName = useSetAtom(usernameAtom)
   const setTitleAtom = useSetAtom(titleAtom)
+  const setSelectedView = useSetAtom(selectedViewAtom)
+  const setSelectedItemName = useSetAtom(selectedItemNameAtom)
+
   const educationsDispatcher = useSetAtom(educationsAtom)
   const profileDispatcher = useSetAtom(profileAtom)
   const experienceDispatcher = useSetAtom(experiencesAtom)
@@ -54,6 +59,8 @@ export default function ResumePage({ resume, id }: { resume: Resume | null, id: 
   useEffect(()=>{
     setUserName(username)
     setTitleAtom(resume?.title!)
+    setSelectedView("canvas")
+    setSelectedItemName({section:"profile",index: []})
 
     educationsDispatcher({
       type: "set",
