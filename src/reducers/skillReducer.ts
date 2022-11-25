@@ -4,7 +4,7 @@ import { WritableDraft } from "immer/dist/internal";
 
 export const skillSectionReducer = (
   skills: WritableDraft<SkillSection[]>,
-  { type, payload, subsection }: SectionActionType
+  { type, payload, subsection, value }: SectionActionType
 ) => {
   if (subsection === "skill" && payload?.index?.length) {
     skillReducer(skills[payload.index[0]].skills, {
@@ -23,7 +23,11 @@ export const skillSectionReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        skills.splice(payload.index[0] + 1, 0, DefaultData.skillSection);
+        skills.splice(
+          payload.index[0] + 1,
+          0,
+          DefaultData.skillSection(payload.username, payload.resumeId)
+        );
       }
       break;
     case "remove":
@@ -47,6 +51,15 @@ export const skillSectionReducer = (
         ];
       }
       break;
+    case "set":
+      if (value) {
+        while (skills.length) {
+          skills.pop();
+        }
+        (value as SkillSection[])?.forEach((item: SkillSection) =>
+          skills.push(item)
+        );
+      }
   }
 };
 
@@ -62,7 +75,7 @@ export const skillReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        skills?.push(DefaultData.skill);
+        skills?.push(DefaultData.skill());
       }
       break;
     case "remove":

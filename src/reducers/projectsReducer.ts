@@ -4,7 +4,7 @@ import { WritableDraft } from "immer/dist/internal";
 
 export const projectsReducer = (
   projects: WritableDraft<Project[]>,
-  { type, payload, subsection }: SectionActionType
+  { type, payload, subsection, value }: SectionActionType
 ) => {
   if (subsection === "technology" && payload?.index?.length) {
     technologyReducer(projects[payload.index[0]].technologies, {
@@ -32,7 +32,11 @@ export const projectsReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        projects.splice(payload.index[0] + 1, 0, DefaultData.project);
+        projects.splice(
+          payload.index[0] + 1,
+          0,
+          DefaultData.project(payload.username, payload.resumeId)
+        );
       }
       break;
     case "remove":
@@ -56,6 +60,13 @@ export const projectsReducer = (
         ];
       }
       break;
+    case "set":
+      if (value) {
+        while (projects.length) {
+          projects.pop();
+        }
+        (value as Project[])?.forEach((item: Project) => projects.push(item));
+      }
   }
 };
 
@@ -72,7 +83,7 @@ export const technologyReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        technologies?.push(DefaultData.technology);
+        technologies?.push(DefaultData.technology());
       }
       break;
     case "remove":
@@ -119,7 +130,7 @@ export const screenshotReducer = (
       break;
     case "add":
       if (payload?.index?.length) {
-        screenshots?.push(DefaultData.screenshot);
+        screenshots?.push(DefaultData.screenshot());
       }
       break;
     case "remove":

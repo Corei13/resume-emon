@@ -10,7 +10,7 @@ import { Session } from "next-auth";
 import { useRouter } from "next/router";
 import React from "react";
 
-export const UserNameInput = styled("input", {
+const UserNameInput = styled("input", {
   height: "2.75rem",
   width: "20.125rem",
   border: "1px solid $colors$gray200",
@@ -18,7 +18,13 @@ export const UserNameInput = styled("input", {
   paddingX: "1em",
 });
 
-const SearchExistInput = () => (
+const SearchExistInput = ({
+  userName,
+  setUserName,
+}: {
+  userName?: string;
+  setUserName: (userName: string) => void;
+}) => (
   <XStack
     alignItems="center"
     space={"$10"}
@@ -30,25 +36,29 @@ const SearchExistInput = () => (
       borderRadius: "$space$6",
     }}
   >
-    <BorderLessInput value={"alex"} />
+    <BorderLessInput
+      value={userName}
+      onChange={(e) => setUserName(e.target.value)}
+    />
     <UserNameErrorIcon />
   </XStack>
 );
 export const LoginModal = ({
   signIn,
   session,
+  userNameExist,
+  userName,
+  setUserName,
+  onSetUNameButtonClick,
 }: {
   signIn: () => void;
   session: Session | null;
+  userName?: string;
+  userNameExist?: boolean;
+  setUserName?: (userName: string) => void;
+  onSetUNameButtonClick?: () => void;
 }) => {
   const router = useRouter();
-
-  // this is temporary, have to make it dynamic on Part 4
-  const userNameExist = false;
-
-  const goToTheDashBoard = () => {
-    router.push("/resumes");
-  };
 
   return (
     <YStack
@@ -70,7 +80,7 @@ export const LoginModal = ({
       >
         Sign in and Build your perfect resume
       </Typography>
-      {session ? (
+      {session && setUserName ? (
         <YStack padding={["3rem", 0, 0, 0]}>
           <XStack padding={"0 0 1rem 0"} css={{ margin: "auto" }}>
             <Typography color="$colors$blue900">
@@ -84,14 +94,17 @@ export const LoginModal = ({
             </Typography>
           </XStack>
           {userNameExist ? (
-            <SearchExistInput />
+            <SearchExistInput userName={userName} setUserName={setUserName} />
           ) : (
-            <UserNameInput placeholder="Username"></UserNameInput>
+            <UserNameInput
+              placeholder="Username"
+              onChange={(e) => setUserName(e.target.value)}
+            ></UserNameInput>
           )}
           <Button
             type={"blue900"}
             css={{ width: "20.125rem", marginTop: "2rem" }}
-            onClick={goToTheDashBoard}
+            onClick={onSetUNameButtonClick}
           >
             Let&apos;s go →
           </Button>

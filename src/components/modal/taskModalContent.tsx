@@ -3,8 +3,12 @@ import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const TaskModalContent = () => {
+  const router = useRouter();
+  const { challengeId } = router.query;
+
   return (
     <YStack css={{ width: "520px" }}>
       <XStack alignItems="center" css={{ width: "100%", marginBottom: "$24" }}>
@@ -57,7 +61,7 @@ export const TaskModalContent = () => {
         >
           Go back
         </Button>
-        <Link href={"/challenge/sandbox"}>
+        <Link href={`/challenge/${challengeId}`}>
           <Button
             type={"blue900"}
             css={{ width: "$space$252", height: "$space$48" }}

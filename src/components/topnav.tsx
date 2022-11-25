@@ -5,17 +5,18 @@ import { useCallback, useState } from "react";
 import dynamic from "next/dynamic";
 import { useAtomValue } from "jotai";
 import { ApiRoutes } from "@src/utils/routes";
-import { usernameAtom } from "@src/atoms/username";
 import { resumeAtom } from "@src/atoms/resume";
+import { useRouter } from "next/router";
 
 const PDF = dynamic(() => import("@src/components/pdf/pdf"), {
   ssr: false,
 });
 
 export const TopNav = () => {
-  const username = useAtomValue(usernameAtom);
   const resume = useAtomValue(resumeAtom);
   const [loading, saveLoading] = useState(false);
+  const router = useRouter();
+  const { id } = router.query;
 
   const handleSaveClick = useCallback(async () => {
     saveLoading(true);
@@ -25,11 +26,11 @@ export const TopNav = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ resume, username }),
+        body: JSON.stringify({ id, resume }),
       });
     } catch (e) {}
     saveLoading(false);
-  }, [resume, username]);
+  }, [resume, id]);
 
   return (
     <XStack

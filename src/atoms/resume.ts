@@ -8,9 +8,12 @@ import { DefaultData } from "@src/utils/defaults";
 import { Resume, SectionActionType, SectionTypes } from "@src/types";
 import { profileReducer } from "@src/reducers/profileReducer";
 import { skillSectionReducer } from "@src/reducers/skillReducer";
+import { usernameAtom } from "@src/atoms/username";
+import { titleAtom } from "@src/atoms/title";
+import { createdAtAtom } from "@src/atoms/createdAt";
 
 export const profileAtom = atomWithReducer(
-  DefaultData.profile,
+  DefaultData.profile(),
   (profile, action: SectionActionType) =>
     produce(profile, (draft) => {
       profileReducer(draft, action);
@@ -18,7 +21,7 @@ export const profileAtom = atomWithReducer(
 );
 
 export const experiencesAtom = atomWithReducer(
-  [DefaultData.experience],
+  [DefaultData.experience("",-1)],
   (experience, action: SectionActionType) =>
     produce(experience, (draft) => {
       experienceReducer(draft, action);
@@ -26,7 +29,7 @@ export const experiencesAtom = atomWithReducer(
 );
 
 export const educationsAtom = atomWithReducer(
-  [DefaultData.education],
+  [DefaultData.education("",-1)],
   (education, action: SectionActionType) =>
     produce(education, (draft) => {
       educationReducer(draft, action);
@@ -34,7 +37,7 @@ export const educationsAtom = atomWithReducer(
 );
 
 export const projectsAtom = atomWithReducer(
-  [DefaultData.project],
+  [DefaultData.project("",-1)],
   (project, action: SectionActionType) =>
     produce(project, (draft) => {
       projectsReducer(draft, action);
@@ -42,7 +45,7 @@ export const projectsAtom = atomWithReducer(
 );
 
 export const skillSectionAtom = atomWithReducer(
-  [DefaultData.skillSection],
+  [DefaultData.skillSection("",-1)],
   (skillSection, action: SectionActionType) =>
     produce(skillSection, (draft) => {
       skillSectionReducer(draft, action);
@@ -73,14 +76,19 @@ const resumeGetter = (get: Getter) => {
   const projects = get(projectsAtom);
   const skills = get(skillSectionAtom);
 
+// make atom for username, title, createdAt and
+//  get the values of username, title, createdAt value from those atom
+
   const resume: Resume = {
+    username: get(usernameAtom),
+    title: get(titleAtom),
+    createdAt: get(createdAtAtom),
     profile,
     experiences,
     educations,
     projects,
     skills,
   };
-
   return resume;
 };
 

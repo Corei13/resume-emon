@@ -16,8 +16,9 @@ export type Description = {
 };
 
 export type Experience = {
-  username?: string;
+  username: string;
   id: number;
+  resumeId: number;
   position: string;
   company: string;
   from: {
@@ -33,8 +34,9 @@ export type Experience = {
 };
 
 export type Education = {
-  username?: string;
+  username: string;
   id: number;
+  resumeId: number;
   school: string;
   degree: string;
   from: {
@@ -53,10 +55,11 @@ export type Skill = {
 };
 
 export type SkillSection = {
+  resumeId: number;
   id: number;
   title: string;
   skills: Skill[];
-  username?: string;
+  username: string;
 };
 
 export type Technology = {
@@ -71,7 +74,8 @@ export type Screenshot = {
 
 export type Project = {
   id: number;
-  username?: string;
+  resumeId: number;
+  username: string;
   title: string;
   url: string;
   description: string;
@@ -80,23 +84,46 @@ export type Project = {
 };
 
 export type Resume = {
-  username?: string;
+  id?: string;
+  username: string;
+  title: string;
   profile: Profile;
+  createdAt: Date | string;
   experiences: Experience[];
   projects: Project[];
   educations: Education[];
   skills: SkillSection[];
 };
 
+export type Challenge = {
+  id: string;
+  title: string;
+  description: string;
+};
+
 export type CodeBlocks = {
+  id?: string;
   username: string;
   code: string;
+  challengeId?: string;
+};
+
+export type User = {
+  username: string;
+  email: string;
 };
 
 export type TNavButton = {
   icon: React.ReactNode;
   label: string;
   isSelected: Boolean;
+  onClick: () => void;
+};
+
+export type TAllResumes = {
+  id: string;
+  title: string;
+  createdAt: string;
 };
 
 export type SectionTypes =
@@ -112,12 +139,15 @@ export type SectionTypes =
   | "none";
 
 export type SectionActionType = {
-  type: "add" | "update" | "remove" | "up" | "down";
+  type: "add" | "update" | "remove" | "up" | "down" | "set";
   subsection?: SectionTypes;
+  value?: Education[] | Profile | Experience[] | Project[] | SkillSection[];
   payload?: {
     field?: string;
     index?: number[];
     value?: unknown;
+    username: string;
+    resumeId: number
   };
 };
 

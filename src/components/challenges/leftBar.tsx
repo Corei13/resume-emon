@@ -4,8 +4,11 @@ import { ChallengesIcon } from "@src/components/icons/challenges";
 import { MyResumeIcon } from "@src/components/icons/myResume";
 import { ResumeIcon } from "@src/components/icons/resume";
 import { XStack, YStack } from "@src/components/stack";
+import { useRouter } from "next/router";
 
 export const HomeLeftBar = () => {
+  const router = useRouter();
+
   return (
     <YStack
       css={{
@@ -31,14 +34,22 @@ export const HomeLeftBar = () => {
       </XStack>
       <YStack space={"$16"}>
         <NavButton
-          icon={<MyResumeIcon isSelected={false} />}
+          icon={
+            <MyResumeIcon isSelected={router.pathname.includes("resume")} />
+          }
           label="My Resumes"
-          isSelected={false}
+          isSelected={router.pathname.includes("resume")}
+          onClick={() => router.push("/resumes")}
         />
         <NavButton
-          icon={<ChallengesIcon isSelected={true} />}
+          icon={
+            <ChallengesIcon
+              isSelected={router.pathname.includes("challenge")}
+            />
+          }
           label="Challenges"
-          isSelected={true}
+          isSelected={router.pathname.includes("challenge")}
+          onClick={() => router.push("challenges")}
         />
       </YStack>
       <XStack></XStack>

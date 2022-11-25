@@ -4,6 +4,7 @@ import { LinkIcon } from "@src/components/icons/link";
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 import { styled } from "@src/stitches.config";
+import { useRouter } from "next/router";
 
 const TargetXStack = styled(XStack, {
   height: "$space$28",
@@ -15,20 +16,25 @@ const TargetXStack = styled(XStack, {
 export const ResumeCard = ({
   resumeTitle,
   date,
+  id,
   onEditClick,
   onLinkClick,
   onDelete,
 }: {
   resumeTitle: string;
   date: string;
+  id: string;
   onEditClick?: (resumeId: string) => void;
   onLinkClick?: (resumeId: string) => void;
   onDelete?: (resumeId: string) => void;
 }) => {
+  const router = useRouter();
+
   return (
     <XStack
       alignItems="center"
       padding={"0 $space$20"}
+      onClick={() => router.push(`resume/${id}`)}
       css={{
         height: "$space$72",
         marginX: "$space$40",

@@ -1,5 +1,6 @@
 import { ChallengeCard } from "@src/components/challenges/challengeCard";
 import { ChallengesNav } from "@src/components/challenges/nav";
+import { FilterIcon } from "@src/components/icons/filter";
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
 
@@ -8,11 +9,31 @@ export const AllChallenges = () => {
     <YStack css={{ width: "100%" }}>
       <ChallengesNav navTitle="Challenges" noBorder={true} />
       <YStack space={"$24"} padding={"0 $space$40"}>
-        <Typography variant="xs" color="$gray500">
-          06 Challenges showing
-        </Typography>
+        <XStack>
+          <Typography variant="xs" color="$gray500">
+            06 Challenges showing
+          </Typography>
+          <XStack
+            css={{
+              width: "4.5rem",
+              height: "1.5rem",
+              marginLeft: "auto",
+              backgroundColor: "$gray100",
+              borderRadius: ".25rem",
+            }}
+          >
+            <XStack
+              space={".5rem"}
+              alignItems="center"
+              css={{ margin: "auto" }}
+            >
+              <FilterIcon /> <Typography variant="xs">Filter</Typography>
+            </XStack>
+          </XStack>
+        </XStack>
         <XStack wrap={true}>
           <ChallengeCard
+            id="1"
             thumbnailImagePath="codeCubeThumbnail.png"
             date="Nov 20, 2022"
             title="Code Cube"
@@ -39,6 +60,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="2"
             thumbnailImagePath="heroHeaderThumbnail.png"
             date="Oct 31, 2022"
             title="Hero header"
@@ -60,6 +82,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="3"
             thumbnailImagePath="prototypeThumbnail.png"
             date="Oct 31, 2022"
             title="Prototype"
@@ -81,6 +104,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="4"
             thumbnailImagePath="prototypeThumbnail2.png"
             date="Oct 31, 2022"
             title="Prototype"
@@ -97,6 +121,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="5"
             thumbnailImagePath="codeCubeThumbnail2.png"
             date="Nov 20, 2022"
             title="Code Cube"
@@ -113,6 +138,7 @@ export const AllChallenges = () => {
             ]}
           />
           <ChallengeCard
+            id="6"
             thumbnailImagePath="heroHeaderThumbnail2.png"
             date="Oct 31, 2022"
             title="Hero header"
