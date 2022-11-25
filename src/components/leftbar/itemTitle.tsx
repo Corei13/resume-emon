@@ -38,40 +38,40 @@ export const ItemTitle = ({
   const sectionAtom = getSectionAtom(section || "none");
   const username = useAtomValue(usernameAtom);
   const dispatcher = useSetAtom(sectionAtom);
-  const router = useRouter()
-  const {id} = router.query
+  const router = useRouter();
+  const { id } = router.query;
 
   const onAdd = useCallback(() => {
     dispatcher?.({
       type: "add",
       subsection,
-      payload: { index, username, resumeId:Number(id) },
+      payload: { index, username, resumeId: Number(id) },
     });
-  }, [dispatcher, index, subsection, username]);
+  }, [id, dispatcher, index, subsection, username]);
 
   const onUp = useCallback(() => {
     dispatcher?.({
       type: "up",
       subsection,
-      payload: { index, username, resumeId:Number(id)  },
+      payload: { index, username, resumeId: Number(id) },
     });
-  }, [dispatcher, index, subsection, username]);
+  }, [id, dispatcher, index, subsection, username]);
 
   const onDown = useCallback(() => {
     dispatcher?.({
       type: "down",
       subsection,
-      payload: { index, username, resumeId:Number(id)  },
+      payload: { index, username, resumeId: Number(id) },
     });
-  }, [dispatcher, index, subsection, username]);
+  }, [id, dispatcher, index, subsection, username]);
 
   const onRemove = useCallback(() => {
     dispatcher?.({
       type: "remove",
       subsection,
-      payload: { index, username, resumeId:Number(id)  },
+      payload: { index, username, resumeId: Number(id) },
     });
-  }, [dispatcher, index, subsection, username]);
+  }, [id, dispatcher, index, subsection, username]);
 
   return (
     <XStack

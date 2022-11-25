@@ -1,8 +1,6 @@
-import { usernameAtom } from "@src/atoms/username";
 import { Button } from "@src/components/button";
 import { XStack, YStack } from "@src/components/stack";
 import { Typography } from "@src/components/typography";
-import { useAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,7 +8,6 @@ import { useRouter } from "next/router";
 export const TaskModalContent = () => {
   const router = useRouter();
   const { challengeId } = router.query;
-  const [username] = useAtom(usernameAtom);
 
   return (
     <YStack css={{ width: "520px" }}>

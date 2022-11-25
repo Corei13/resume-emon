@@ -19,7 +19,7 @@ export const SetResumeTitle = () => {
   const [title, setTitle] = useState("");
   const createResumeClicked = async () => {
     try {
-      await fetch(ApiRoutes.createEmptyResume(), {
+      const emptyResume = await fetch(ApiRoutes.createEmptyResume(), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,9 +28,9 @@ export const SetResumeTitle = () => {
           title,
           username: localStorage.getItem("userName"),
         }),
-      })
-        .then((response) => response.json())
-        .then((data) => router.push(`/resume/${data.id}`));
+      });
+      const response = await emptyResume.json();
+      router.push(`/resume/${response.id}`);
     } catch (e) {}
   };
 

@@ -52,9 +52,13 @@ export const skillSectionReducer = (
       }
       break;
     case "set":
-      if(value) {
-        while(skills.length) skills.pop();
-        (value as SkillSection[])?.forEach((item:SkillSection) => skills.push(item))
+      if (value) {
+        while (skills.length) {
+          skills.pop();
+        }
+        (value as SkillSection[])?.forEach((item: SkillSection) =>
+          skills.push(item)
+        );
       }
   }
 };

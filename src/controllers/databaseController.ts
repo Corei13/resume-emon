@@ -5,19 +5,26 @@ import { DefaultData } from "@src/utils/defaults";
 const client = new PrismaClient();
 
 export const saveResume = async (id: string, resume: Resume) => {
-
-  await client.education.deleteMany({where: {
-    resumeId: Number(id)
-  }})
-  await client.experience.deleteMany({where: {
-    resumeId: Number(id)
-  }})
-  await client.project.deleteMany({where: {
-    resumeId: Number(id)
-  }})
-  await client.skillSection.deleteMany({where: {
-    resumeId: Number(id)
-  }})
+  await client.education.deleteMany({
+    where: {
+      resumeId: Number(id),
+    },
+  });
+  await client.experience.deleteMany({
+    where: {
+      resumeId: Number(id),
+    },
+  });
+  await client.project.deleteMany({
+    where: {
+      resumeId: Number(id),
+    },
+  });
+  await client.skillSection.deleteMany({
+    where: {
+      resumeId: Number(id),
+    },
+  });
   const update = await client?.resume.update({
     where: {
       id: Number(id),
@@ -29,7 +36,9 @@ export const saveResume = async (id: string, resume: Resume) => {
       profile: resume.profile,
       educations: {
         createMany: {
-          data: resume.educations.map(({ id, resumeId: _, ...education }) => education),
+          data: resume.educations.map(
+            ({ id, resumeId: _, ...education }) => education
+          ),
         },
       },
       experiences: {
@@ -41,7 +50,9 @@ export const saveResume = async (id: string, resume: Resume) => {
       },
       projects: {
         createMany: {
-          data: resume.projects.map(({ id, resumeId: _, ...project }) => project),
+          data: resume.projects.map(
+            ({ id, resumeId: _, ...project }) => project
+          ),
         },
       },
       skills: {
@@ -52,7 +63,7 @@ export const saveResume = async (id: string, resume: Resume) => {
     },
   });
 
-  return update
+  return update;
 };
 
 export const createEmptyResume = async (title: string, username: string) => {
@@ -69,40 +80,40 @@ export const createEmptyResume = async (title: string, username: string) => {
       },
     });
     const resume = await client.resume.update({
-      where :{
-        id: resumeWithoutSection.id
-      }, data: {
+      where: {
+        id: resumeWithoutSection.id,
+      },
+      data: {
         educations: {
           createMany: {
-            data: [DefaultData.education(username,resumeWithoutSection.id)].map(
-              ({ id, resumeId: _, ...education }) => education
-            ),
+            data: [
+              DefaultData.education(username, resumeWithoutSection.id),
+            ].map(({ id, resumeId: _, ...education }) => education),
           },
         },
         experiences: {
           createMany: {
-            data: [DefaultData.experience(username, resumeWithoutSection.id)].map(
-              ({ id, resumeId: _, ...experience }) => experience
-            ),
+            data: [
+              DefaultData.experience(username, resumeWithoutSection.id),
+            ].map(({ id, resumeId: _, ...experience }) => experience),
           },
         },
         projects: {
           createMany: {
             data: [DefaultData.project(username, resumeWithoutSection.id)].map(
-              ({ id,resumeId: _, ...project }) => project
+              ({ id, resumeId: _, ...project }) => project
             ),
           },
         },
         skills: {
           createMany: {
-            data: [DefaultData.skillSection(username, resumeWithoutSection.id)].map(
-              ({ id,resumeId: _, ...skill }) => skill
-            ),
+            data: [
+              DefaultData.skillSection(username, resumeWithoutSection.id),
+            ].map(({ id, resumeId: _, ...skill }) => skill),
           },
         },
-      }
-    })
-
+      },
+    });
 
     return resume.id;
   }

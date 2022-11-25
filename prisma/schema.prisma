@@ -80,7 +80,7 @@ model Challenge {
 model CodeBlocks {
   id          Int        @id @default(autoincrement())
   username    String
-  code        String
+  code        String     @db.Text()
   Challenge   Challenge? @relation(fields: [challengeId], references: [id], onDelete: Cascade)
   challengeId Int
   User        User       @relation(fields: [username], references: [username], onDelete: Cascade)

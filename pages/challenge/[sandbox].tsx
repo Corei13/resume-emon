@@ -18,33 +18,30 @@ const submitButton = (
 
 const SandBox = () => {
   const router = useRouter();
-  let userName = "";
   const { sandbox } = router.query;
   const [codeBlocks, setCodeBlocks] = useState<CodeBlocks>();
 
-  if (typeof window !== "undefined") {
-    userName = localStorage.getItem("userName") || "";
-  }
-
   useEffect(() => {
     const controller = new AbortController();
-
+    const userName = localStorage.getItem("userName") || "";
     const fetchCode = async () => {
-      await fetch(ApiRoutes.getCodeBlocks(userName, sandbox as string), {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setCodeBlocks(data);
-        });
+      const code = await fetch(
+        ApiRoutes.getCodeBlocks(userName, sandbox as string),
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const codeJson = await code.json();
+      setCodeBlocks(codeJson);
     };
+
     fetchCode();
 
     return () => controller.abort();
-  }, [sandbox, userName]);
+  }, [sandbox]);
 
   return (
     <YStack>

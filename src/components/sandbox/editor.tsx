@@ -44,7 +44,6 @@ export const Editor = ({ codeBlocks }: { codeBlocks?: CodeBlocks }) => {
         }}
       >
         <XStack css={{ width: "100%" }}>
-          hellos
           <XStack
             css={{
               flex: 1,

@@ -12,7 +12,7 @@ import {
 } from "@src/types";
 
 export const DefaultData = {
-  experience(username: string, resumeId:number): Experience {
+  experience(username: string, resumeId: number): Experience {
     return {
       username,
       resumeId,

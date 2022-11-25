@@ -61,9 +61,11 @@ export const projectsReducer = (
       }
       break;
     case "set":
-      if(value) {
-        while(projects.length) projects.pop();
-        (value as Project[])?.forEach((item:Project) => projects.push(item))
+      if (value) {
+        while (projects.length) {
+          projects.pop();
+        }
+        (value as Project[])?.forEach((item: Project) => projects.push(item));
       }
   }
 };

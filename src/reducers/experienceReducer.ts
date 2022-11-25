@@ -52,9 +52,13 @@ export const experienceReducer = (
       }
       break;
     case "set":
-      if(value) {
-        while(experiences.length) experiences.pop();
-        (value as Experience[])?.forEach((item:Experience) => experiences.push(item))
+      if (value) {
+        while (experiences.length) {
+          experiences.pop();
+        }
+        (value as Experience[])?.forEach((item: Experience) =>
+          experiences.push(item)
+        );
       }
   }
 };

@@ -43,9 +43,13 @@ export const educationReducer = (
       }
       break;
     case "set":
-      if(value) {
-        while(educations.length) educations.pop();
-        (value as Education[])?.forEach((item:Education) => educations.push(item))
+      if (value) {
+        while (educations.length) {
+          educations.pop();
+        }
+        (value as Education[])?.forEach((item: Education) =>
+          educations.push(item)
+        );
       }
   }
 };

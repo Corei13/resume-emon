@@ -12,18 +12,14 @@ export const profileReducer = (
       }
       break;
     case "set":
-      if(value){
-        const newProfile = value as Profile
+      if (value) {
+        const newProfile = value as Profile;
 
-        profile.avatar = newProfile.avatar
-        profile.name = newProfile.name
-        profile.bio = newProfile.bio
-        profile.cover = newProfile.cover
-        profile.email = newProfile.email
-        profile.linkedin = newProfile.linkedin
-        profile.location = newProfile.location
-        profile.phone = newProfile.phone
-        profile.username = newProfile.username
+        (Object.keys(profile) as (keyof typeof profile)[]).forEach((key) => {
+          if (typeof newProfile[key] !== "undefined") {
+            profile[key] = newProfile[key]!;
+          }
+        });
       }
       break;
   }

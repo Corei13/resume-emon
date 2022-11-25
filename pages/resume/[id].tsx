@@ -25,68 +25,81 @@ import { useEffect } from "react";
 import { selectedViewAtom } from "@src/atoms/selectedView";
 import { selectedItemNameAtom } from "@src/atoms/selectedItem";
 
-export default function ResumePage({ resume, id }: { resume: Resume | null, id: string }) {
+export default function ResumePage({
+  resume,
+  id,
+}: {
+  resume: Resume | null;
+  id: string;
+}) {
+  const setUserName = useSetAtom(usernameAtom);
+  const setTitleAtom = useSetAtom(titleAtom);
+  const setSelectedView = useSetAtom(selectedViewAtom);
+  const setSelectedItemName = useSetAtom(selectedItemNameAtom);
 
-  let username = "";
-  if (typeof window !== "undefined") {
-    username = localStorage.getItem("userName") || "";
-  }
-  const setUserName = useSetAtom(usernameAtom)
-  const setTitleAtom = useSetAtom(titleAtom)
-  const setSelectedView = useSetAtom(selectedViewAtom)
-  const setSelectedItemName = useSetAtom(selectedItemNameAtom)
-
-  const educationsDispatcher = useSetAtom(educationsAtom)
-  const profileDispatcher = useSetAtom(profileAtom)
-  const experienceDispatcher = useSetAtom(experiencesAtom)
-  const projectsDispatcher = useSetAtom(projectsAtom)
-  const skillDispatcher = useSetAtom(skillSectionAtom)
+  const educationsDispatcher = useSetAtom(educationsAtom);
+  const profileDispatcher = useSetAtom(profileAtom);
+  const experienceDispatcher = useSetAtom(experiencesAtom);
+  const projectsDispatcher = useSetAtom(projectsAtom);
+  const skillDispatcher = useSetAtom(skillSectionAtom);
 
   useHydrateAtoms([
-    [usernameAtom, username],
     [titleAtom, resume?.title],
     [createdAtAtom, resume?.createdAt],
     [profileAtom, resume?.profile],
-    [
-      experiencesAtom,
-      resume?.experiences ,
-    ],
-    [educationsAtom, resume?.educations ],
+    [experiencesAtom, resume?.experiences],
+    [educationsAtom, resume?.educations],
     [projectsAtom, resume?.projects],
     [skillSectionAtom, resume?.skills],
   ] as unknown as Iterable<readonly [Atom<unknown>, unknown]>);
 
-  useEffect(()=>{
-    setUserName(username)
-    setTitleAtom(resume?.title!)
-    setSelectedView("canvas")
-    setSelectedItemName({section:"profile",index: []})
+  useEffect(() => {
+    const userName = localStorage.getItem("userName") || "";
+    setUserName(userName);
+    setTitleAtom(resume?.title!);
+    setSelectedView("canvas");
+    setSelectedItemName({ section: "profile", index: [] });
 
     educationsDispatcher({
       type: "set",
-      value: resume?.educations
-    })
+      value: resume?.educations,
+    });
     profileDispatcher({
       type: "set",
-      value: resume?.profile
-    })
+      value: resume?.profile,
+    });
     experienceDispatcher({
       type: "set",
-      value: resume?.experiences
-    })
+      value: resume?.experiences,
+    });
     projectsDispatcher({
       type: "set",
-      value: resume?.projects
-    })
+      value: resume?.projects,
+    });
     skillDispatcher({
       type: "set",
-      value: resume?.skills
-    })
+      value: resume?.skills,
+    });
 
-    return () => {}
-
-  }, [id])
-
+    return () => {};
+  }, [
+    id,
+    educationsDispatcher,
+    profileDispatcher,
+    experienceDispatcher,
+    projectsDispatcher,
+    skillDispatcher,
+    resume?.educations,
+    resume?.profile,
+    resume?.experiences,
+    resume?.projects,
+    resume?.skills,
+    resume?.title,
+    setUserName,
+    setTitleAtom,
+    setSelectedItemName,
+    setSelectedView,
+  ]);
 
   return (
     <>
