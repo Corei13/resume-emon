@@ -18,7 +18,7 @@ import { useHydrateAtoms } from "jotai/utils";
 import { usernameAtom } from "@src/atoms/username";
 import { MainView } from "@src/components/mainView";
 import { getSession } from "next-auth/react";
-import { getResume } from "@src/controllers/databaseController";
+import { getResume, getUser } from "@src/controllers/databaseController";
 import { titleAtom } from "@src/atoms/title";
 import { createdAtAtom } from "@src/atoms/createdAt";
 import { useEffect } from "react";
@@ -54,8 +54,7 @@ export default function ResumePage({
   ] as unknown as Iterable<readonly [Atom<unknown>, unknown]>);
 
   useEffect(() => {
-    const userName = localStorage.getItem("userName") || "";
-    setUserName(userName);
+    setUserName(resume?.username!);
     setTitleAtom(resume?.title!);
     setSelectedView("canvas");
     setSelectedItemName({ section: "profile", index: [] });
@@ -89,6 +88,7 @@ export default function ResumePage({
     experienceDispatcher,
     projectsDispatcher,
     skillDispatcher,
+    resume?.username,
     resume?.educations,
     resume?.profile,
     resume?.experiences,
@@ -132,6 +132,14 @@ export async function getServerSideProps(context: NextPageContext) {
   const resume = await getResume(id as string);
 
   const session = await getSession(context);
+  const user = await getUser(session?.user?.email as string);
+  if (user?.username !== resume?.username) {
+    return {
+      redirect: {
+        destination: "/resumes",
+      },
+    };
+  }
   if (!session) {
     return {
       redirect: {
