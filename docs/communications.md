@@ -1,4 +1,4 @@
-# Communcations
+# Communications
 
 To make sure you thrive in your roles, we have a very high expectations for proactive communications. This is what we expect during the qualifier (and will expect when you work with us),
 
