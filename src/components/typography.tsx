@@ -207,4 +207,34 @@ const ItemDescription = (props: PropsWithChildren<Props>) => {
   return <Typography {...props} variant="xxs" color="$gray800" />;
 };
 
-export { Typography, SectionTitle, ItemTitle, ItemSubTitle, ItemDescription };
+const MDXText = (props: PropsWithChildren<Props>) => {
+  return (
+    <Typography
+      variant="md"
+      color="$gray800"
+      css={{ lineHeight: "$space$30", textAlign: "justify" }}
+      {...props}
+    />
+  );
+};
+
+const MDXh1 = (props: PropsWithChildren<Props>) => {
+  return (
+    <Typography
+      variant="lg"
+      color="$gray800"
+      css={{ fontWeight: "bold", marginTop: "$space$32" }}
+      {...props}
+    />
+  );
+};
+
+export {
+  Typography,
+  SectionTitle,
+  ItemTitle,
+  ItemSubTitle,
+  ItemDescription,
+  MDXText,
+  MDXh1,
+};

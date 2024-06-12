@@ -15,3 +15,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.ch-code {
+  background-color: #f8f8f8 !important;
+}
+
+.ch-codeblock.not-prose {
+  box-shadow: none;
+}
